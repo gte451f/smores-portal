@@ -1,0 +1,9 @@
+<div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+        {{#if session.isAuthenticated}}
+            <li><a {{ action 'invalidateSession' }}>Logout</a></li>
+        {{/if}}
+
+        <li>{{#link-to "me"}}My Account{{/link-to}}</li>
+    </ul>
+</div>

@@ -30,6 +30,11 @@ module.exports = function (environment) {
         // Testem prefers this...
         ENV.baseURL = '/';
 
+
+        ENV['camp'] = {
+            name: 'High Harbour'
+        };
+
         // ENV.APP.LOG_RESOLVER = true;
         // ENV.APP.LOG_ACTIVE_GENERATION = true;
         // ENV.APP.LOG_TRANSITIONS = true;
@@ -61,6 +66,10 @@ module.exports = function (environment) {
         ENV.APP.restNameSpace = 'api/v1';
         // used for CSP
         ENV.APP.restDestination = 'https://app.smores.camp/hhy';
+
+        ENV['camp'] = {
+            name: 'High Harbour'
+        };
     }
 
     //https://github.com/rwjblue/ember-cli-content-security-policy
@@ -80,7 +89,7 @@ module.exports = function (environment) {
         store: 'simple-auth-session-store:local-storage',
         authenticationRoute: 'auth.login',
         authorizer: 'authorizer:custom',
-        routeAfterAuthentication: 'matters.list'
+        routeAfterAuthentication: 'test'
     };
 
     ENV['auth'] = {
