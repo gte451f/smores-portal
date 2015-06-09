@@ -13,8 +13,10 @@ Router.map(function() {
     this.route('reminder');
     this.route('reset');
     this.route('new');
+    this.route('activate');
   });
   this.route('me');
+  this.route('dash');
 });
 
 export default Router;

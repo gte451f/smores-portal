@@ -1,1 +1,138 @@
-{{outlet}}
+<div class="login-box">
+    <div class="login-logo">
+        <b>Register a new account</b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-8">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Enter Account Information</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Username</label>
+
+                        <div class="col-sm-8">
+                            {{input type="text" class="form-control" value=model.account.userName placeholder="User Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Password</label>
+
+                        <div class="col-sm-8">
+                            {{input type="password" class="form-control" value=model.account.password placeholder="Password"}}
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Re-enter Your Password</label>
+
+                        <div class="col-sm-8">
+                            {{input type="password" class="form-control" value=model.password_confirm placeholder="Confirm Password"}}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+
+                <div class="box-header">
+                    <h3 class="box-title">Enter Your Information</h3>
+                    {{#general-tooltip content="Enter the Primary contact below.
+                        <br /> The best Email and Phone number for camp to reach you at." contentAsHTML=true}}
+                        ?{{/general-tooltip}}
+                </div>
+                <!-- /.box-header -->
+
+                <div class="box-body">
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">First Name</label>
+
+                        <div class="col-sm-8">
+                            {{input type="text" class="form-control" value=model.user.firstName placeholder="First Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Last Name</label>
+
+                        <div class="col-sm-8">
+                            {{input type="text" class="form-control" value=model.user.lastName placeholder="Last Name"}}
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Relationship to Attendee</label>
+
+                        <div class="col-sm-8">
+                            {{#each item in listService.ownerRelationship}}
+                                {{radio-button value=item.value checked=model.owner.relationship}} {{item.label}}
+                            {{/each}}
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Gender</label>
+
+                        <div class="col-sm-8">
+                            {{#each item in listService.gender}}
+                                {{radio-button value=item.value checked=model.user.gender}} {{item.display}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-header">
+                    <h3 class="box-title">Enter Your Contact Information</h3>
+                </div>
+                <!-- /.box-header -->
+
+                <div class="box-body">
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Email</label>
+
+                        <div class="col-sm-8">
+                            {{input type="email" class="form-control" value=model.user.email placeholder="Email Address"}}
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Primary Telephone Number</label>
+
+                        <div class="col-sm-8">
+                            {{input type="text" class="form-control" value=model.ownerNumber.number placeholder="###-###-####"}}
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">Telephone Type</label>
+
+                        <div class="col-sm-8">
+                            {{#each item in listService.ownerNumberType}}
+                                {{radio-button value=item.value checked=model.ownerNumber.phoneType}} {{item.label}}
+                            {{/each}}
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    {{#link-to 'auth.login' class="btn-primary btn"}}Return To Login{{/link-to}}
+                    <button class="btn btn-primary pull-right" {{action "save" model}}>Save</button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+
+</div>

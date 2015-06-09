@@ -1,11 +1,11 @@
 <div class="login-box">
     <div class="login-logo">
-        <a href=""><b>{{campName}}</b>.camp</a>
+        <b>{{campName}}</b>.camp
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
     <div class="col-md-4">
         <div class="login-box">
@@ -35,8 +35,6 @@
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                        <p>- OR -</p>
-                        <button type="submit" class="btn btn-default btn-block btn-flat">What is my password?</button>
                     </div>
 
                 </form>
@@ -44,23 +42,27 @@
             <!-- /.login-box-body -->
         </div>
     </div>
-
+    <div class="col-md-2">
+    </div>
 
     <div class="col-md-4">
         <div class="login-box">
             <div class="login-box-body">
-                <p class="login-box-msg">New to {{campName}} ?</p>
+                <p class="login-box-msg">New to {{campName}} or just looking for some help?</p>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Create New Account</button>
-                    <p>- OR -</p>
-                    <button type="submit" class="btn btn-default btn-block btn-flat">What is my password?</button>
+                    {{#link-to "auth.new" class="btn btn-primary btn-block btn-flat"}}Create New Account{{/link-to}}
+                    <div style="margin: 20px;"><strong> - OR - </strong></div>
+                    {{#link-to "auth.reminder" class="btn btn-primary btn-block btn-flat"}}Help! I forgot my
+                        password!{{/link-to}}
+                    <div style="margin: 20px;"><strong> - OR - </strong></div>
+                    {{#link-to "auth.activate" class="btn btn-primary btn-block btn-flat"}}Activate My
+                        Account{{/link-to}}
                 </div>
-
             </div>
             <!-- /.login-box-body -->
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
 </div>

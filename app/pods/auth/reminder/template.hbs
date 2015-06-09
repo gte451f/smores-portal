@@ -1,0 +1,79 @@
+<div class="login-box" style="width: 75%; margin-bottom: 3% ">
+    <div class="login-logo">
+        <b>Have you forgotten your password?</b>
+    </div>
+
+    <div class="text-center">
+        Enter your username or email address of the <strong>Primary Contact</strong> on your account and we'll send you
+        a password reset
+        code. <br/>
+    </div>
+
+    <div class="callout callout-info">
+        <h4>Important!</h4>
+        <ul>
+            <li>When you request to reset your password, you account will be locked until you complete the process.</li>
+            <li>If for some reason you do not receive an email from us, please check your spam folder.</li>
+            <li>You can submit this form multiple times. Each time it will create a new code used to reset your
+                password.
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Identify Your Account Information</h3>
+                <div class="box-tools pull-right" data-toggle="tooltip" title="" data-original-title="Status">
+                    <div class="btn-group" data-toggle="btn-toggle">
+                        <button type="button" class="btn btn-default btn-sm active" {{action 'showUserName'}} id="userName-btn">{{fa-icon 'users'}} Username</button>
+                        <button type="button" class="btn btn-default btn-sm" {{action 'showEmail'}} id="email-btn">{{fa-icon 'envelope-o'}} Email Address</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group required" id="userName-input">
+                        <label class="col-sm-4 control-label">Username</label>
+
+                        <div class="col-sm-8">
+                            {{input type="text" class="form-control" value=model.userName placeholder="User Name"}}
+                        </div>
+                    </div>
+
+                    <div class="form-group required hidden" id="email-input">
+                        <label class="col-sm-4 control-label">Email Address</label>
+
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                {{input type="text" class="form-control" value=model.email placeholder="my@email.address"}}
+
+                                {{#input-tooltip content="Be sure to use the email of your primary contact on this account."}}
+                                    {{fa-icon "info"}}
+                                {{/input-tooltip}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    {{#link-to 'auth.login' class="btn btn-primary"}}Return To Login{{/link-to}}
+                    <button class="btn btn-primary pull-right" {{action "reminder" model}}>Send Reset Code</button>
+                </div>
+                <!-- /.box-footer -->
+
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+
+</div>
