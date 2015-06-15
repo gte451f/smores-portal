@@ -10,10 +10,10 @@
 
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header with-border">
 
@@ -43,7 +43,16 @@
                         <label class="col-sm-4 control-label">Secret Code</label>
 
                         <div class="col-sm-8">
-                            {{input type="text" class="form-control" value=model.code placeholder="#####"}}
+
+
+                            <div class="input-group">
+                                {{input type="text" class="form-control" value=model.code placeholder="#####"}}
+
+                                {{#input-tooltip content="Check your email for the secret code.  Don't forget to check your spam folder if it isn't in your inbox."}}
+                                    {{fa-icon "info"}}
+                                {{/input-tooltip}}
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -51,7 +60,7 @@
 
                 <div class="box-footer clearfix">
                     {{#link-to 'auth.reminder' class="btn btn-primary"}}Resend Secret Code{{/link-to}}
-                    <button class="btn btn-primary pull-right" {{action "activate" model}}>Reset My Password</button>
+                    <button class="btn btn-primary pull-right" {{action "reset" model}}>Reset My Password</button>
                 </div>
                 <!-- /.box-footer -->
 
@@ -59,7 +68,34 @@
         </div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="callout callout-info">
+            <h4>What makes for a good password?</h4>
+            <ul>
+                <li>More than 8 characters</li>
+                <li>Made of upper and lower case letters, numbers and symbols</li>
+                <li>Avoid using words in your password, it makes it easier to crack.</li>
+            </ul>
+
+
+            <h4>The most common <strong>weak</strong> passwords are:</h4>
+            <ul>
+                <li>123456</li>
+                <li>password</li>
+                <li>12345</li>
+                <li>12345678</li>
+                <li>qwerty</li>
+            </ul>
+            (so don't use these!)
+        </div>
+
+    </div>
+
+    <div class="col-md-1">
     </div>
 
 </div>

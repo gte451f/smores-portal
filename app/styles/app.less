@@ -12,21 +12,25 @@
   background-color: #d2d6de;
 }
 
+/* this was being set to light, so restore to bootstrap default */
+.input-group-addon {
+  color: #555;
+}
+
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
   color: #555;
 }
 
+
+
+/* ez way to mark fields as required */
 .form-group.required .control-label:after {
   content: "*";
   color: red;
 }
 
-/*
- * Repair seemingly broken pagination style
- */
-.pagination > li > a {
-  cursor: pointer;
-}
+
+
 
 /*
  * Set a z-index to the drop down always appears on top

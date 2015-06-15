@@ -7,7 +7,7 @@
         <section class="content-header">
             <h1>
                 Test Page
-                <small>it all starts here</small>
+                <small>for the smores portal</small>
             </h1>
             {{partial "theme/main-breadcrumb"}}
         </section>
@@ -20,7 +20,48 @@
                 </div>
 
                 <div class="box-body">
-                    BODY BODY BODY BODY BODY
+
+                    <div class="box box-primary box-top">
+                        {{ partial "table-pager/table/header"}}
+                        <div class="box-body">
+                            <div role="grid" class="form-inline">
+                                {{partial "table-pager/table/tools"}}
+                                <table class="table table-bordered table-striped">
+                                    {{partial "table-pager/table/table-header"}}
+                                    {{partial "table-pager/table/row"}}
+                                </table>
+                                {{partial "table-pager/table/footer"}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="box box-primary box-solid">
+                        {{ partial "table-pager/table/header"}}
+                        <div class="box-body">
+                            <div role="grid" class="form-inline">
+                                {{partial "table-pager/slim-table/tools"}}
+                                <table class="table table-bordered table-striped">
+                                    {{partial "table-pager/slim-table/table-header"}}
+                                    {{partial "table-pager/table/row"}}
+                                </table>
+                                {{partial "table-pager/slim-table/footer"}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="box box-primary">
+                        {{partial "table-pager/list/header"}}
+                        <div class="box-body">
+                            <ul class="todo-list">
+                                {{ partial "table-pager/list/row"}}
+                            </ul>
+                        </div>
+                        {{partial "table-pager/list/footer"}}
+                    </div>
+
+
                 </div>
             </div>
             <!-- /.box -->

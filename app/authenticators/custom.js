@@ -30,7 +30,8 @@ export default Base.extend({
                 type: 'POST',
                 data: {
                     username: credentials.identification,
-                    password: credentials.password
+                    password: credentials.password,
+                    type: 'Account' //tell the API which type of auth to use
                 }
             }).then(function (response) {
                 Ember.run(function () {
@@ -43,7 +44,8 @@ export default Base.extend({
                         userName: response.userName,
                         firstName: response.firstName,
                         lastName: response.LastName,
-                        id: response.id
+                        id: response.id,
+                        type: 'Account'
                     });
                 });
             }, function (xhr, status, error) {

@@ -16,7 +16,7 @@ Router.map(function() {
     this.route('activate');
   });
   this.route('me');
-  this.route('dash');
+  this.route('dash', {path: "/info/:foo_id"});
 });
 
 export default Router;
