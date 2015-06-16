@@ -5,22 +5,12 @@ import ENV from 'smores-portal/config/environment';
 export default Ember.Route.extend(ErrorHandler, {
     //reset the model in case you return to add another record
     model: function () {
-        return {userName: null, email: null};
+        return {email: null};
     },
 
     actions: {
         reminder: function (model) {
             var self = this;
-            var isUserName = this.controllerFor('auth.reminder').get('isUserName');
-            var isEmail = this.controllerFor('auth.reminder').get('isEmail');
-
-            var foo = model;
-
-            if (isUserName) {
-                var payload = {userName: model.userName};
-            } else {
-                var payload = {email: model.email};
-            }
 
             $.ajax({
                 url: ENV.APP.restNameSpace + "/auth/reminder",

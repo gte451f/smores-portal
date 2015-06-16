@@ -6,12 +6,9 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h4>
-                Enter one of the following:
-            </h4>
-            <p>1) Account Username </p>
-            <p>2) The Email address of the <strong>Primary Contact</strong> on your account</p>
-            <p>Then we'll send a password reset code to that address. </p>
+            <p>Enter your Email and we'll send a password reset code to that address. </p>
+
+            <p>Use that reset code to set a new password for your account on the next page.</p>
         </div>
         <div class="col-md-3"></div>
     </div>
@@ -24,42 +21,21 @@
     <div class="col-md-8">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Identify Your Account Information</h3>
+                <h3 class="box-title"></h3>
 
                 <div class="box-tools pull-right" data-toggle="tooltip" title="" data-original-title="Status">
-                    <div class="btn-group" data-toggle="btn-toggle">
-                        <button type="button" class="btn btn-default btn-sm active" {{action 'showUserName'}}
-                                id="userName-btn">{{fa-icon 'users'}} Username
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm" {{action 'showEmail'}}
-                                id="email-btn">{{fa-icon 'envelope-o'}} Email Address
-                        </button>
-                    </div>
+
                 </div>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal">
                 <div class="box-body">
-                    <div class="form-group required" id="userName-input">
-                        <label class="col-sm-4 control-label">Username</label>
-
-                        <div class="col-sm-8">
-                            {{input type="text" class="form-control" value=model.userName placeholder="User Name"}}
-                        </div>
-                    </div>
-
-                    <div class="form-group required hidden" id="email-input">
+                    <div class="form-group required" id="email-input">
                         <label class="col-sm-4 control-label">Email Address</label>
 
                         <div class="col-sm-8">
-                            <div class="input-group">
-                                {{input type="text" class="form-control" value=model.email placeholder="my@email.address"}}
-
-                                {{#input-tooltip content="Be sure to use the email of your primary contact on this account."}}
-                                    {{fa-icon "info"}}
-                                {{/input-tooltip}}
-                            </div>
+                            {{input type="text" class="form-control" value=model.email placeholder="my@email.address"}}
                         </div>
                     </div>
                 </div>

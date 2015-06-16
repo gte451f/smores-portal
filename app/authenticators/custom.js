@@ -29,9 +29,8 @@ export default Base.extend({
                 url: ENV.auth.login,
                 type: 'POST',
                 data: {
-                    username: credentials.identification,
-                    password: credentials.password,
-                    type: 'Account' //tell the API which type of auth to use
+                    email: credentials.identification,
+                    password: credentials.password
                 }
             }).then(function (response) {
                 Ember.run(function () {
