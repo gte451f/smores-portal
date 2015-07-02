@@ -12,7 +12,7 @@ export default Ember.Route.extend(ErrorHandler, {
         reminder: function (model) {
             var self = this;
 
-            $.ajax({
+            Ember.$.ajax({
                 url: ENV.APP.restNameSpace + "/auth/reminder",
                 type: "POST",
                 data: model

@@ -12,6 +12,5 @@ export default DS.Model.extend({
 
 
     // why did I do this?
-    user: DS.belongsTo('user'),
     requests: DS.hasMany('request')
 });

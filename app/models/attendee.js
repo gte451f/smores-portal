@@ -11,6 +11,6 @@ export default DS.Model.extend({
     firstName: DS.attr('string'),
 
     // relationships
-    registrations: DS.hasMany('registration', {async: true, inverse: 'user'}),
-    account: DS.belongsTo('account', {async: true})
+    registrations: DS.hasMany('registration', {async: true}),
+    account: DS.belongsTo('account')
 });

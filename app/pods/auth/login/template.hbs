@@ -1,16 +1,16 @@
 <div class="login-box">
     <div class="login-logo">
-        <b>{{campName}}</b>.camp
+        <b>{{campName}}</b>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-2">
     </div>
     <div class="col-md-4">
         <div class="login-box">
             <div class="login-box-body">
-                <p class="login-box-msg">Sign in to your SMORES.camp site</p>
+                <p class="login-box-msg">Sign in to your {{campName}} site</p>
 
                 {{#if errorMessage}}
                     <div class="alert alert-danger">
@@ -42,13 +42,11 @@
             <!-- /.login-box-body -->
         </div>
     </div>
-    <div class="col-md-2">
-    </div>
 
     <div class="col-md-4">
         <div class="login-box">
             <div class="login-box-body">
-                <p class="login-box-msg">New to {{campName}} or just looking for some help?</p>
+                <p class="login-box-msg"></p>
 
                 <div class="text-center">
                     {{#link-to "auth.new" class="btn btn-primary btn-block btn-flat"}}Create New Account{{/link-to}}
@@ -63,6 +61,6 @@
             <!-- /.login-box-body -->
         </div>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
     </div>
 </div>

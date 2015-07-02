@@ -23,13 +23,14 @@ export default Ember.Route.extend(ErrorHandler, {
 
 
     actions: {
-        // mega next account -> user -> owner -> ownerNumber
+        // use a custom function to create the record
+        // partially because most end points are blocked until the user authenticates
         save: function (model) {
             var self = this;
 
             //validate here?
 
-            $.ajax({
+            Ember.$.ajax({
                 url: ENV.APP.restNameSpace + "/auth/create",
                 type: "POST",
                 data: model
@@ -44,54 +45,6 @@ export default Ember.Route.extend(ErrorHandler, {
                 // self.notify.error('Error!  The Username or Email provided does not match up with an eligible account.  Please try again with a valid Email or Username', {closeAfter: 10000});
             });
 
-        },
-
-        // mega next account -> user -> owner -> ownerNumber
-        save2: function (model) {
-            var self = this;
-
-            var account = this.store.createRecord('account', model.account);
-            account.save().then(function (newAccount) {
-                var that = self;
-                var user = self.store.createRecord('user', model.user);
-                user.save().then(function (newUser) {
-                    var them = that;
-                    var owner = self.store.createRecord('owner', model.owner);
-                    owner.set('user', user);
-                    owner.set('account', account);
-                    owner.save().then(function (newOwner) {
-                        var those = them;
-                        var ownerNumber = self.store.createRecord('owner-number', model.ownerNumber);
-                        ownerNumber.set('user', user);
-                        ownerNumber.save().then(function (newOwnerNumber) {
-                            //redirect to new account page
-                            those.transitionTo('auth.activate');
-                            self.notify.success('Success creating your account!  Check your email for an activation code to enter on the next screen.', {closeAfter: 15000});
-                        }, function (reason) {
-                            //handle ownerNumber Failure
-                            account.destroyRecord();
-                            user.destroyRecord();
-                            owner.destroyRecord();
-                            self.handleXHR(reason);
-                        });
-                        //self.notify.success('Success adding owner !');
-                    }, function (reason) {
-                        //handle owner failure
-                        account.destroyRecord();
-                        user.destroyRecord();
-                        self.handleXHR(reason);
-                    });
-                    //self.notify.success('Success adding account!');
-                }, function (reason) {
-                    //handle user failure
-                    account.destroyRecord();
-                    self.handleXHR(reason);
-                });
-                //self.notify.success('Success adding user!');
-            }, function (reason) {
-                //handle account failure
-                self.handleXHR(reason);
-            });
         }
     }
 });

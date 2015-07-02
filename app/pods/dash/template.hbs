@@ -6,21 +6,63 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Test Page
-                <small>it all starts here</small>
+                Home
             </h1>
             {{partial "theme/main-breadcrumb"}}
         </section>
         <!-- Main content -->
         <section class="content">
-            <!-- Default box -->
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Title</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <div class="info-box">
+                        {{#link-to 'members.list'}}
+                            <span class="info-box-icon bg-aqua-gradient">{{fa-icon 'users'}}</span>
+                        {{/link-to}}
+                        <div class="info-box-content">
+                            <span class="info-box-number">{{#link-to 'members.list'}} Account Members{{/link-to}}</span>
+
+                            <div>Register all parents and children in your account before you attempt to sign anyone up
+                                for camp.
+                            </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+
+
+                    <div class="info-box">
+                        <span class="info-box-icon bg-red-gradient">
+                                <span class="glyphicon glyphicon-tent"></span>
+                        </span>
+
+                        <div class="info-box-content">
+                            {{#link-to 'registrations.list'}}
+                                <span class="info-box-number">Registrations</span>
+                            {{/link-to}}
+
+                            <div>Sign children up for camp or view existing registrations.</div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+
+
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow-gradient">{{fa-icon 'shopping-cart'}}</span>
+
+                        <div class="info-box-content">
+                            {{#link-to 'billing.summary'}}
+                                <span class="info-box-number">Billing & Payments</span>
+                            {{/link-to}}
+                            <div>Review your account's current charges and payments as camp approaches.</div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+
                 </div>
-                BODY BODY BODY BODY BODY
             </div>
-            <!-- /.box -->
+
         </section>
         <!-- /.content -->
     </div>

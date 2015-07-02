@@ -42,8 +42,9 @@ export default Base.extend({
                         expiresOn: response.expiresOn,
                         userName: response.userName,
                         firstName: response.firstName,
-                        lastName: response.LastName,
+                        lastName: response.lastName,
                         id: response.id,
+                        accountId: response.accountId,
                         type: 'Account'
                     });
                 });

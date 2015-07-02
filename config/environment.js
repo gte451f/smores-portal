@@ -30,16 +30,10 @@ module.exports = function (environment) {
         // Testem prefers this...
         ENV.baseURL = '/';
 
-
         ENV['camp'] = {
             name: 'High Harbour'
         };
 
-        // ENV.APP.LOG_RESOLVER = true;
-        // ENV.APP.LOG_ACTIVE_GENERATION = true;
-        // ENV.APP.LOG_TRANSITIONS = true;
-        // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-        // ENV.APP.LOG_VIEW_LOOKUPS = true;
     }
 
     if (environment === 'test') {
@@ -89,7 +83,7 @@ module.exports = function (environment) {
         store: 'simple-auth-session-store:local-storage',
         authenticationRoute: 'auth.login',
         authorizer: 'authorizer:custom',
-        routeAfterAuthentication: 'test'
+        routeAfterAuthentication: 'dash'
     };
 
     ENV['auth'] = {

@@ -11,7 +11,7 @@ export default Ember.Route.extend(ErrorHandler, {
     actions: {
         activate: function (model) {
             var self = this;
-            $.ajax({
+            Ember.$.ajax({
                 url: ENV.APP.restNameSpace + "/auth/activate",
                 type: "POST",
                 data: model

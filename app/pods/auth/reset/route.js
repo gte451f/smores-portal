@@ -12,7 +12,7 @@ export default Ember.Route.extend(ErrorHandler, {
         reset: function (model) {
             var self = this;
 
-            $.ajax({
+            Ember.$.ajax({
                 url: ENV.APP.restNameSpace + "/auth/reset",
                 type: "POST",
                 data: model
