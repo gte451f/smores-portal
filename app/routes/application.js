@@ -2,6 +2,14 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+
+
+    model: function (params) {
+        var accountId = this.get('session.accountId');
+        return this.store.find('account', accountId);
+    },
+
+
     redirectsTo: 'dash',
 
     actions: {

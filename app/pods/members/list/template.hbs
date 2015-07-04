@@ -4,7 +4,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">{{fa-icon 'users'}} Owners</h3>
 
-                <div class="box-tools pull-right">
+                <div class="box-tools">
                     {{#link-to 'members.add-owner' class="btn btn-box-tool"}}{{fa-icon "plus"}} Owner{{/link-to}}
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">{{fa-icon 'users'}} Campers</h3>
 
-                <div class="box-tools pull-right">
+                <div class="box-tools">
                     {{#link-to 'members.add-attendee' class="btn btn-box-tool"}}{{fa-icon "plus"}} Camper{{/link-to}}
                 </div>
             </div>
@@ -39,7 +39,14 @@
                         {{#link-to 'members.edit-attendee' record.id class="list-group-item"}}
                             <h4 class="list-group-item-heading">{{record.firstName}} {{record.lastName}}</h4>
 
-                            <p class="list-group-item-text">{{moment record.dob 'MM/DD/YYYY'}}</p>
+                            <p class="list-group-item-text">
+                                {{moment record.dob 'MM/DD/YYYY'}} -
+                                {{#if record.active}}
+                                    <span class="label label-success">Active</span>
+                                {{else}}
+                                    <span class="label label-warning">Inactive</span>
+                                {{/if}}
+                            </p>
                         {{/link-to}}
                     {{else}}
                         <li>no records found ... :-(</li>

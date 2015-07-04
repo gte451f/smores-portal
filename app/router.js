@@ -26,8 +26,8 @@ Router.map(function () {
       this.route('list');
       this.route('add-attendee');
       this.route('add-owner');
-      this.route('edit-owner', {path: "/edit-owner/:user_id"});
-      this.route('edit-attendee', {path: "/edit-attendee/:user_id"});
+      this.route('edit-owner', {path: "/edit-owner/:owner_id"});
+      this.route('edit-attendee', {path: "/edit-attendee/:attendee_id"});
   });
 
   this.route('registrations', function() {

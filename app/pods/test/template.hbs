@@ -13,58 +13,8 @@
         </section>
         <!-- Main content -->
         <section class="content">
-            <!-- Default box -->
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Title</h3>
-                </div>
-
-                <div class="box-body">
-
-                    <div class="box box-primary box-top">
-                        {{ partial "table-pager/table/header"}}
-                        <div class="box-body">
-                            <div role="grid" class="form-inline">
-                                {{partial "table-pager/table/tools"}}
-                                <table class="table table-bordered table-striped">
-                                    {{partial "table-pager/table/table-header"}}
-                                    {{partial "table-pager/table/row"}}
-                                </table>
-                                {{partial "table-pager/table/footer"}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
-                    <div class="box box-primary box-solid">
-                        {{ partial "table-pager/table/header"}}
-                        <div class="box-body">
-                            <div role="grid" class="form-inline">
-                                {{partial "table-pager/slim-table/tools"}}
-                                <table class="table table-bordered table-striped">
-                                    {{partial "table-pager/slim-table/table-header"}}
-                                    {{partial "table-pager/table/row"}}
-                                </table>
-                                {{partial "table-pager/slim-table/footer"}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
-                    <div class="box box-primary">
-                        {{partial "table-pager/list/header"}}
-                        <div class="box-body">
-                            <ul class="todo-list">
-                                {{ partial "table-pager/list/row"}}
-                            </ul>
-                        </div>
-                        {{partial "table-pager/list/footer"}}
-                    </div>
 
 
-                </div>
-            </div>
-            <!-- /.box -->
         </section>
         <!-- /.content -->
     </div>

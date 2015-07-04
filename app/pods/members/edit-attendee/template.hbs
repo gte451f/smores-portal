@@ -1,1 +1,63 @@
-{{outlet}}
+<!-- Default box -->
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Edit Camper</h3>
+
+        <div class="box-tools"></div>
+    </div>
+    <div class="box-body form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">First Name</label>
+
+            <div class="col-sm-10">
+                {{input type="text" class="form-control" value=model.firstName}}</div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Last Name</label>
+
+            <div class="col-sm-10">
+                {{input type="text" class="form-control" value=model.lastName}}</div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Birthday</label>
+
+            <div class="col-sm-10">
+                {{date-picker date=model.dob format='MM-DD-YYYY' valueFormat='YYYY-MM-DD' class="form-control" yearRange="-20,0"}}</div>
+        </div>
+        <div class="row form-group required">
+            <label class="col-sm-2 control-label">Gender</label>
+
+            <div class="col-sm-10">
+                {{#each item in listService.gender}}
+                    {{radio-button value=item.value checked=model.gender}} {{item.display}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Grade</label>
+
+            <div class="col-sm-10">
+                {{view "select"
+                content=listService.grade
+                value=schoolGrade
+                optionValuePath="content.value"
+                optionLabelPath="content.display"
+                class="form-control"}}</div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Active?</label>
+
+            <div class="col-sm-10">
+                {{x-toggle theme='flip' value=model.active toggled=model.active off='Inactive' on='Active'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="box-footer clearfix">
+        <div class="pull-right">
+            {{#link-to 'members.list' class="btn btn-primary "}}Back{{/link-to}}
+            <button class="btn btn-primary" {{action "save" model}}>Save</button>
+        </div>
+    </div>
+</div>
+<!-- /.box -->
