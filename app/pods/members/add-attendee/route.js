@@ -13,7 +13,7 @@ export default Ember.Route.extend(ErrorHandler, {
             model.userType = "Attendee";
             var accountId = this.get('session.accountId');
             // var account = this.store.find('account', accountId);
-            var account = this.store.getById('account', accountId);
+
 
             model.account = account;
             var newRecord = this.store.createRecord('attendee', model);

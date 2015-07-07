@@ -6,5 +6,5 @@ export default DS.Model.extend({
     number: DS.attr('string'),
 
     //relationships
-    user: DS.belongsTo('user')
+    owner: DS.belongsTo('owner')
 });

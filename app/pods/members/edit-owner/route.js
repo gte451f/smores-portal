@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import Error from 'smores-portal/mixins/crud/error';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(Error, {
     model: function (params) {
         return this.store.find('owner', {with: 'all', id: params.owner_id});
     },
