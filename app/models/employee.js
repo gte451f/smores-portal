@@ -1,9 +1,15 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    active: DS.attr('number'), //listed as number because mysql stores it as such
-    userName: DS.attr('string'),
-    password: DS.attr('string'),
+    position: DS.attr('string'),
+
+    // by way of user model
+    email: DS.attr('string'),
+    lastName: DS.attr('string'),
+    firstName: DS.attr('string'),
+    gender: DS.attr('string'),
+    userType: DS.attr('string'),
+    active: DS.attr('number'),
 
 
     //relationships

@@ -6,7 +6,8 @@ export default DS.Model.extend({
     firstName: DS.attr('string'),
     userName: DS.attr('string'),
     userType: DS.attr('string'),
-    gender: DS.attr('string')
+    gender: DS.attr('string'),
+    active: DS.attr('boolean')
 
     // relationships
 });

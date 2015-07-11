@@ -6,6 +6,7 @@ export default DS.Model.extend({
     createdOn: DS.attr('date'),
     updatedOn: DS.attr('date'),
     name: DS.attr('string'),
+    active: DS.attr('boolean'),
 
     // relationships
     attendees: DS.hasMany('attendee'),

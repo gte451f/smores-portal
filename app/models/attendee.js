@@ -12,6 +12,7 @@ export default DS.Model.extend({
     firstName: DS.attr('string'),
     gender: DS.attr('string'),
     userType: DS.attr('string'),
+    active: DS.attr('number'),
 
     // relationships
     registrations: DS.hasMany('registration', {async: true}),

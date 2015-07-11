@@ -5,10 +5,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
 
     model: function (params) {
+        //if the user is authenticated, pre-load their account data
         var accountId = this.get('session.accountId');
-        return this.store.find('account', accountId);
-    },
+        if (Ember.typeOf(accountId) === 'undefined') {
+            return {};
+        } else {
+            return this.store.find('account', accountId);
 
+        }
+    },
 
     redirectsTo: 'dash',
 

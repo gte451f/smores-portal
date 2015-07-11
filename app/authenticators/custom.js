@@ -2,6 +2,7 @@ import Ember from "ember";
 import Base from "simple-auth/authenticators/base";
 import LocalStorage from 'simple-auth/stores/local-storage';
 import ENV from 'smores-portal/config/environment';
+import Notify from 'ember-notify';
 
 export default Base.extend({
     /**
@@ -10,7 +11,11 @@ export default Base.extend({
     restore: function (data) {
         console.log('restore ran');
         var local = LocalStorage.create();
-        return Ember.RSVP.resolve(local.restore());
+        var authData = local.restore();
+        // api seems to indicate that it should return a plain object
+        // but w/o the RSVP.resovle, I don't base the authenticated checks
+        // subsequent code seems to reject a promise
+        return Ember.RSVP.resolve(authData);
     },
 
     /**
@@ -49,10 +54,12 @@ export default Base.extend({
                     });
                 });
             }, function (xhr, status, error) {
-                console.log(xhr.responseJSON);
+                var errorMessage = "<h4>Could not log you into the system: </h4>" + xhr.responseJSON.records.userMessage;
+                Notify.alert({raw: errorMessage, closeAfter: 10000});
             });
         });
-    },
+    }
+    ,
 
     /**
      * logout
@@ -77,4 +84,5 @@ export default Base.extend({
             });
         });
     }
-});
+})
+    ;
