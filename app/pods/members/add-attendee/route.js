@@ -12,10 +12,7 @@ export default Ember.Route.extend(ErrorHandler, {
             var self = this;
             model.userType = "Attendee";
             var accountId = this.get('session.accountId');
-            // var account = this.store.find('account', accountId);
-
-
-            model.account = account;
+            model.account = this.store.getById('account', accountId);
             var newRecord = this.store.createRecord('attendee', model);
             newRecord.save().then(function (post) {
                 self.notify.success('Success adding new camper');

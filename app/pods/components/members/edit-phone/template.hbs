@@ -22,10 +22,9 @@
             <label class="col-sm-4 control-label">Primary Number</label>
 
             <div class="col-sm-8">
-                {{x-toggle theme='flip' value=phone.primary toggled=true off='No' on='Yes'}}
+                {{input type='checkbox' checked=phone.primary}}
             </div>
         </div>
-
 
         <div class="pull-right">
             <button class="btn btn-success" {{action 'save' phone}}>Save</button>
@@ -37,6 +36,9 @@
         <div class="pill-item">
             <i class="fa fa-circle-o text-blue"></i>
             {{phone.phoneType}} - {{phone.number}}
+            {{#if phone.primary}}
+                <span class="label label-success">Primary</span>
+            {{/if}}
             <div class="pill-tools pull-right">
                 <button class="btn btn-default btn-xs" {{action 'edit'}} > {{fa-icon 'pencil'}} </button>
                 <button class="btn btn-default btn-xs" {{action 'delete' phone}} > {{fa-icon 'trash'}} </button>

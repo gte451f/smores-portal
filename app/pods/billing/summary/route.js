@@ -6,7 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model: function (params) {
         var currentAccountId = this.get('session.accountId');
         if (currentAccountId > 0) {
-            return this.store.find('account', {id: currentAccountId, with: 'cards,checks,charges,payments'});
+            return this.store.find('account', {id: currentAccountId, with: 'all'});
         } else {
             this.notify.error('Could not load your account!');
             this.transitionTo('dash');
