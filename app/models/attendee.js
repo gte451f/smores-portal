@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    active: DS.attr('boolean'),
     schoolGrade: DS.attr('string'),
     dob: DS.attr('string'),
 

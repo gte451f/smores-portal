@@ -58,8 +58,7 @@ export default Base.extend({
                 Notify.alert({raw: errorMessage, closeAfter: 10000});
             });
         });
-    }
-    ,
+    },
 
     /**
      * logout
@@ -84,5 +83,4 @@ export default Base.extend({
             });
         });
     }
-})
-    ;
+});

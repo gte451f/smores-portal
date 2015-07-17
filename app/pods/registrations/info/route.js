@@ -10,7 +10,6 @@ export default Ember.Route.extend({
 
     setupController: function (controller, resolved) {
         var model = resolved.model.get('firstObject');
-        var self = this.store;
         this._super(controller, model);
     }
 });

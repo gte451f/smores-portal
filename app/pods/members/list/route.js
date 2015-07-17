@@ -4,8 +4,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     model: function (params) {
-        var accountId = accountId = this.get('session.accountId');
-
+        var accountId = this.get('session.accountId');
         return this.store.find('account', {with: 'owners,attendees', id: accountId});
     },
 
