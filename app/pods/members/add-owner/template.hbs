@@ -18,7 +18,7 @@
                     <label class="control-label">Relationship to Attendee</label>
 
                     <div>
-                        {{#each item in listService.ownerRelationship}}
+                        {{#each listService.ownerRelationship as |item|}}
                             {{radio-button value=item.value checked=model.owner.relationship}} {{item.label}}
                         {{/each}}
                     </div>
@@ -28,7 +28,7 @@
                     <label class="control-label">Gender</label>
 
                     <div>
-                        {{#each item in listService.gender}}
+                        {{#each listService.gender as |item|}}
                             {{radio-button value=item.value checked=model.owner.gender}} {{item.display}}
                         {{/each}}
                     </div>
@@ -49,7 +49,7 @@
                     <label class="control-label">Phone Type</label>
 
                     <div>
-                        {{#each item in listService.ownerNumberType}}
+                        {{#each listService.ownerNumberType as |item|}}
                             {{radio-button value=item.value checked=model.phone.phoneType}} {{item.label}}
                         {{/each}}
                     </div>

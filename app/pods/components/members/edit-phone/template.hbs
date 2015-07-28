@@ -12,7 +12,7 @@
             <label class="col-sm-4 control-label">Telephone Type</label>
 
             <div class="col-sm-8">
-                {{#each item in listService.ownerNumberType}}
+                {{#each listService.ownerNumberType  as |item|}}
                     {{radio-button value=item.value checked=phone.phoneType}} {{item.label}}
                 {{/each}}
             </div>

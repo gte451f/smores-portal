@@ -9,16 +9,16 @@
     <div class="box-body">
         {{partial "table-pager/slim-table/widgets/quick-search"}}
         <div class="list-group">
-            {{#each record in this.model}}
-                {{#link-to 'registrations.info' record.id class="list-group-item"}}
+            {{#each this.model as |item|}}
+                {{#link-to 'registrations.info' item.id class="list-group-item"}}
                     <h4 class="list-group-item-heading">#
-                        {{record.id}} for {{record.attendee.firstName}} {{record.attendee.lastName}}
-                        on {{moment record.createdOn 'MM/DD/YY'}}
+                        {{item.id}} for {{item.attendee.firstName}} {{item.attendee.lastName}}
+                        on {{moment item.createdOn 'MM/DD/YY'}}
                     </h4>
 
                     <p class="list-group-item-text">
                     <h4>Registration Requests:</h4>
-                    {{#each item in record.requests}}
+                    {{#each record.requests as |item|}}
                         <div class="well">{{item.submitStatus}} - {{item.priority}} - {{item.note}}
                             - {{item.event.location.name}}</div>
                     {{/each}}

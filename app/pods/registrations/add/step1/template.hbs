@@ -29,7 +29,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Attending Camper:</label>
-                            {{view "select"
+                            {{x-select
                             content=attendees
                             optionValuePath="content.id"
                             optionLabelPath="content.firstName"

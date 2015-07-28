@@ -28,7 +28,7 @@
             <label class="col-sm-2 control-label">Gender</label>
 
             <div class="col-sm-10">
-                {{#each item in listService.gender}}
+                {{#each listService.gender as |item|}}
                     {{radio-button value=item.value checked=model.gender}} {{item.display}}
                 {{/each}}
             </div>
@@ -37,7 +37,7 @@
             <label class="col-sm-2 control-label">Grade</label>
 
             <div class="col-sm-10">
-                {{view "select"
+                {{x-select
                 content=listService.grade
                 value=schoolGrade
                 optionValuePath="content.value"

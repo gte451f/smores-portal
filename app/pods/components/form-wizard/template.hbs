@@ -1,5 +1,5 @@
-{{#each step in steps}}
-    {{wizard-step name=step.step activeIndex=activeIndex index=_view.contentIndex}}
+{{#each steps as |item|}}
+    {{wizard-step name=item.step activeIndex=activeIndex index=_view.contentIndex}}
 {{/each}}
 
 <div class="pull-right">

@@ -10,17 +10,14 @@
             </div>
             <div class="box-body">
                 <div class="list-group">
-                    {{#each record in model.owners}}
-                        {{#link-to 'members.edit-owner' record.id class="list-group-item"}}
-                            <h4 class="list-group-item-heading">{{record.firstName}} {{record.lastName}}
-
-                                {{#if record.primaryContact}}
+                    {{#each model.owners item}}
+                        {{#link-to 'members.edit-owner' item.id class="list-group-item"}}
+                            <h4 class="list-group-item-heading">{{item.firstName}} {{item.lastName}}
+                                {{#if item.primaryContact}}
                                     <span class="label label-success">Primary</span>
                                 {{/if}}
                             </h4>
-
-
-                            <p class="list-group-item-text">{{record.relationship}}</p>
+                            <p class="list-group-item-text">{{item.relationship}}</p>
                         {{/link-to}}
                     {{else}}
                         <li>no records found ... :-(</li>
@@ -41,13 +38,13 @@
             </div>
             <div class="box-body">
                 <div class="list-group">
-                    {{#each record in model.attendees}}
-                        {{#link-to 'members.edit-attendee' record.id class="list-group-item"}}
-                            <h4 class="list-group-item-heading">{{record.firstName}} {{record.lastName}}</h4>
+                    {{#each model.attendees as |item|}}
+                        {{#link-to 'members.edit-attendee' item.id class="list-group-item"}}
+                            <h4 class="list-group-item-heading">{{item.firstName}} {{item.lastName}}</h4>
 
                             <p class="list-group-item-text">
-                                {{moment record.dob 'MM/DD/YYYY'}} -
-                                {{#if record.active}}
+                                {{moment item.dob 'MM/DD/YYYY'}} -
+                                {{#if item.active}}
                                     <span class="label label-success">Active</span>
                                 {{else}}
                                     <span class="label label-warning">Inactive</span>

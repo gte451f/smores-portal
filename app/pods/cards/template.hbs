@@ -27,7 +27,7 @@
                         <!-- /.box-header -->
                         <div class="box-body">
 
-                            {{#each item in model.cards}}
+                            {{#each model.cards as |item|}}
                                 <div class="row">
                                     <div class="col-md-10">
                                         {{cards/card-info card=item}}

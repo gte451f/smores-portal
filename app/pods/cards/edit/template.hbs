@@ -19,7 +19,7 @@
             <label class="col-sm-4 control-label">Expiration</label>
 
             <div class="col-sm-4">
-                {{view "select"
+                {{x-select
                 content=listService.monthNumber
                 optionValuePath="content.value"
                 optionLabelPath="content.label"
@@ -28,7 +28,7 @@
                 class="form-control"}}
             </div>
             <div class="col-sm-4">
-                {{view "select"
+                {{x-select
                 content=listService.cardExpirationYear
                 optionValuePath="content.value"
                 optionLabelPath="content.label"
@@ -48,7 +48,7 @@
             <label class="col-sm-4 control-label">Vendor</label>
 
             <div class="col-sm-8">
-                {{view "select"
+                {{x-select
                 content=listService.cardVendor
                 optionValuePath="content.value"
                 optionLabelPath="content.label"
@@ -61,7 +61,7 @@
             <label class="col-sm-4 control-label">Is this a debit card?</label>
 
             <div class="col-sm-8">
-                {{#each item in listService.boolean}}
+                {{#each listService.boolean  as |item|}}
                     {{radio-button value=item.value checked=model.isDebit}} {{item.name}}
                 {{/each}}
             </div>
@@ -70,7 +70,7 @@
             <label class="col-sm-4 control-label">Can this card be used for reoccuring charges?</label>
 
             <div class="col-sm-8">
-                {{#each item in listService.boolean}}
+                {{#each listService.boolean  as |item|}}
                     {{radio-button value=item.value checked=model.allowReoccuring}} {{item.name}}
                 {{/each}}
             </div>

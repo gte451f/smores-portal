@@ -21,7 +21,7 @@
                         <th style="width: 40px">Amount</th>
                         <th></th>
                     </tr>
-                    {{#each item in model.charges}}
+                    {{#each model.charges as |item|}}
                         <tr>
                             <td>{{moment item.createdOn 'MM-DD-YYYY'}}</td>
                             <td>{{item.name}}</td>
@@ -62,7 +62,7 @@
                         <th></th>
                     </tr>
 
-                    {{#each item in model.payments}}
+                    {{#each model.payments as |item|}}
                         <tr>
                             <td>{{moment item.createdOn 'MM-DD-YYYY'}}</td>
                             <td>{{item.type}}</td>

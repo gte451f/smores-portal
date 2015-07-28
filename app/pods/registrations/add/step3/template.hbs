@@ -10,7 +10,7 @@
         <h4 class="panel-title"><span class="glyphicon glyphicon-tent"></span> Step 3: Confirm & Save</h4>
     </div>
     <div class="panel-body form-horizontal">
-        {{#each item in step2.requests}}
+        {{#each step2.requests as |item|}}
             <div class="info-box">
                 <span class="info-box-icon bg-green">#{{item.priority}}</span>
 

@@ -75,7 +75,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-black">
-                {{#each item in requests}}
+                {{#each requests as |item|}}
                     {{registrations/new-request request=item action="removeRequest" locations=locations sessions=sessions events=events }}
                 {{/each}}
             </div>

@@ -18,7 +18,7 @@
                     <label class="control-label">Relationship to Attendee</label>
 
                     <div>
-                        {{#each item in listService.ownerRelationship}}
+                        {{#each listService.ownerRelationship as |item|}}
                             {{radio-button value=item.value checked=model.relationship}} {{item.label}}
                         {{/each}}
                     </div>
@@ -28,7 +28,7 @@
                     <label class="control-label">Gender</label>
 
                     <div>
-                        {{#each item in listService.gender}}
+                        {{#each listService.gender as |item|}}
                             {{radio-button value=item.value checked=model.gender}} {{item.display}}
                         {{/each}}
                     </div>
@@ -61,8 +61,8 @@
             <div class="box-body">
                 {{members/add-phone owner=model isAdding=newPhone}}
                 <ul class="nav nav-pills nav-stacked">
-                    {{#each number in model.ownerNumbers}}
-                        {{members/edit-phone phone=number}}
+                    {{#each model.ownerNumbers as |item|}}
+                        {{members/edit-phone phone=item}}
                     {{/each}}
                 </ul>
             </div>

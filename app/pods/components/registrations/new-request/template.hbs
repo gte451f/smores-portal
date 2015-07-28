@@ -2,7 +2,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Priority</label>
-            {{view "select"
+            {{x-select
             content=priorities
             optionValuePath="content"
             optionLabelPath="content"
@@ -15,7 +15,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Location</label>
-            {{view "select"
+            {{x-select
             content=locations
             optionValuePath="content.id"
             optionLabelPath="content.name"
@@ -27,7 +27,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Session</label>
-            {{view "select"
+            {{x-select
             content=filteredSessions
             optionValuePath="content.id"
             optionLabelPath="content.name"
@@ -40,7 +40,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>Program / Cabin</label>
-            {{view "select"
+            {{x-select
             content=filteredEvents
             optionValuePath="content.id"
             optionLabelPath="content.fullName"
