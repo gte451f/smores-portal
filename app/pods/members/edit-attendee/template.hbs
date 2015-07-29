@@ -48,7 +48,8 @@
             <label class="col-sm-2 control-label">Active?</label>
 
             <div class="col-sm-10">
-                {{x-toggle theme='flip' value=model.active toggled=model.active off='Inactive' on='Active'}}
+                {{!--{{x-toggle theme='flip' value=model.active toggled=model.active off='Inactive' on='Active'}}--}}
+                {{input type="checkbox" checked=model.active}}
             </div>
         </div>
     </div>
