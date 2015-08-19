@@ -10,7 +10,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         if (Ember.typeOf(accountId) === 'undefined') {
             return {};
         } else {
-            return this.store.find('account', accountId);
+            return this.store.findRecord('account', accountId);
 
         }
     },

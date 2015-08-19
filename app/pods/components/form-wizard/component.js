@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     classNames: ['steps'],
     currentPath: null, //passed in value, is current route
     steps: null,
-    activeIndex: function () {
+    activeIndex: Ember.computed('currentPath', function () {
         var currentPath = this.get('currentPath');
         var steps = this.get('steps');
         for (var i = 0; i < steps.length; i++) {
@@ -13,7 +13,7 @@ export default Ember.Component.extend({
                 return i;
             }
         }
-    }.property('currentPath'),
+    }),
 
     actions: {
         showHelp: function () {

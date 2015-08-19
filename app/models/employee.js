@@ -13,5 +13,7 @@ export default DS.Model.extend({
 
 
     //relationships
-    user: DS.belongsTo('user')
+    user: DS.belongsTo('user', {
+      async: false
+    })
 });

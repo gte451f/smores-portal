@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import AutoComplete from "ember-cli-auto-complete/components/auto-complete";
 
 export default AutoComplete.extend({
@@ -9,21 +10,21 @@ export default AutoComplete.extend({
 
     // return a filtered list of potential options based on user input
     // basically return all options since the remote api already did the filtering
-    suggestions: function () {
+    suggestions: Ember.computed('triggerSuggestions', function () {
         console.log('suggestions triggered');
         return this.get("options");
-    }.property('triggerSuggestions'),
+    }),
 
     // notify controller that inputVal has changed and the options array should be refreshed
-    updateOptions: function () {
+    updateOptions: Ember.observer('inputVal', function () {
         console.log('updateOptions triggered');
         var inputVal = this.get('inputVal');
         this.sendAction('action', inputVal);
-    }.observes('inputVal'),
+    }),
 
     // called when the user selects from among suggestions
     // validate the selection
-    optionsToMatch: function () {
+    optionsToMatch: Ember.computed("options.@each", function () {
         console.log('optionsToMatch triggered');
         var caseInsensitiveOptions = [];
         this.get("options").forEach(function (item) {
@@ -32,5 +33,5 @@ export default AutoComplete.extend({
             caseInsensitiveOptions.push(value.toLowerCase());
         });
         return caseInsensitiveOptions;
-    }.property("options.@each")
+    })
 });

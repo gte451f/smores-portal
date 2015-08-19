@@ -12,7 +12,7 @@ export default Ember.Route.extend({
         var currentAccountId = this.get('session.accountId');
         return Ember.RSVP.hash({
             model: {},
-            attendees: this.store.find('attendee', {account_id: currentAccountId})
+            attendees: this.store.findRecord('attendee', {account_id: currentAccountId})
         });
     },
     setupController: function (controller, resolved) {

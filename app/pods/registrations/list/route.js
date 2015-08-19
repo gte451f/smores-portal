@@ -5,6 +5,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     model: function (params) {
         var currentAccountId = this.get('session.accountId');
-        return this.store.find('registration', {'attendees:account_id': currentAccountId, with: 'all'});
+        return this.store.query('registration', {'attendees:account_id': currentAccountId, with: 'all'});
     }
 });

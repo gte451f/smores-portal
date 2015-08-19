@@ -5,10 +5,10 @@ export default Ember.Component.extend({
     attributeBindings: ['displayIndex:data-step'],
     classNameBindings: ['isActive:active'],
     index: null,
-    displayIndex: function () {
+    displayIndex: Ember.computed('index', function () {
         return this.get('index') + 1;
-    }.property('index'),
-    isActive: function () {
+    }),
+    isActive: Ember.computed('activeIndex', 'index', function () {
         return this.get('activeIndex') === this.get('index');
-    }.property('activeIndex', 'index')
+    })
 });

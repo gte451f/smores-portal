@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
 
     /**
      * verify that the service is accessible and that the store has been injected
@@ -8,7 +8,7 @@ export default Ember.Object.extend({
     logMe: function () {
         console.log('service available');
         var store = this.get('store');
-        store.find('employee');
+        store.findAll('employee');
     },
 
     gender: [
