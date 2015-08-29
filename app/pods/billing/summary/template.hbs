@@ -1,14 +1,25 @@
-<button class="btn btn-primary">Manage Credit Cards</button>
+<div class="row" style="margin-bottom: 5px;">
+    <div class="col-md-12">
+        <button class="btn btn-primary">{{fa-icon 'credit-card'}} Manage Credit Cards</button>
+
+        {{#link-to 'billing.add-payment' class="btn btn-primary"}}
+            {{fa-icon 'usd'}} Make Payment
+        {{/link-to}}
+    </div>
+</div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div class="box box-warning">
             <div class="box-header">
                 {{fa-icon 'cart-plus'}}
-                <h3 class="box-title">Charges</h3>
+                <h3 class="box-title">
+                    Charges
+                    {{#my-tooltip content='Charges appear here when registrations or other billable activity is confirmed by camp staff.'}}
+                        {{fa-icon "info"}}
+                    {{/my-tooltip}}
+                </h3>
 
-                <div class="pull-right box-tools">
-
-                </div>
+                <div class="pull-right box-tools"></div>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -17,7 +28,7 @@
                     <tr>
                         <th>Date</th>
                         <th>Fee</th>
-                        <th>Attendee</th>
+                        <th>Camper</th>
                         <th style="width: 40px">Amount</th>
                         <th></th>
                     </tr>
@@ -38,16 +49,19 @@
             <!-- /.box-body -->
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="box box-success">
             <div class="box-header">
                 {{fa-icon 'money'}}
-                <h3 class="box-title">Payments</h3>
+                <h3 class="box-title">
+                    Payment History
+                    {{#my-tooltip content='Settled and pending payments are listed here.'}}
+                        {{fa-icon "info"}}
+                    {{/my-tooltip}}
+                </h3>
 
                 <div class="pull-right box-tools">
-                    {{#link-to 'billing.add-payment' class="btn btn-primary btn-xs"}}
-                        {{fa-icon 'plus'}} Payment
-                    {{/link-to}}
+
                 </div>
             </div>
 

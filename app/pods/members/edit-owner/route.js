@@ -13,9 +13,9 @@ export default Ember.Route.extend(Error, {
         save: function (model) {
             var self = this;
             model.save().then(function () {
-                self.notify.success('Owner was saved!');
+                self.notify.success('Owner Saved');
             }, function (reason) {
-                self.handleXHR(reason);
+                self.validationReport(model);
             });
         }
     }

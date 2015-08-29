@@ -9,7 +9,7 @@ export default Ember.Route.extend({
         return true;
     },
     model: function (params) {
-        var currentAccountId = this.get('session.accountId');
+        var currentAccountId = this.get('session.secure.accountId');
         return Ember.RSVP.hash({
             model: {},
             attendees: this.store.findRecord('attendee', {account_id: currentAccountId})

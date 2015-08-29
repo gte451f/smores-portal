@@ -29,13 +29,12 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Attending Camper:</label>
-                            {{x-select
-                            content=attendees
-                            optionValuePath="content.id"
-                            optionLabelPath="content.firstName"
-                            selection=camper
-                            prompt="Select Camper"
-                            class="form-control"}}
+                            {{#x-select value=camper class="form-control"}}
+                                <option>Select</option>
+                                {{#each attendees as |item|}}
+                                    {{#x-option value=item.id}}{{item.firstName}}{{/x-option}}
+                                {{/each}}
+                            {{/x-select}}
                         </div>
                     </div>
                     <div class="col-md-6">
