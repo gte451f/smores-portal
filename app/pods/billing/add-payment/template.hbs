@@ -9,7 +9,7 @@
                     <div class="col-sm-12">
                         <h3 class="panel-title">
                             <span class="label label-info">#1</span> Choose which type of payment to make
-                            <button class="btn btn-primary pull-right" {{action "toggleCredit"}}>{{toggleText}}</button>
+                            <button class="btn btn-primary pull-right" {{action "toggleCredit" model.mode}}>{{toggleText}}</button>
                         </h3>
 
                     </div>
@@ -20,7 +20,7 @@
                     <label></label>
 
                     <div class="input-group">
-                        {{#x-select value=model.card class="form-control"}}
+                        {{#x-select value=selectedCard class="form-control"}}
                             <option>Select</option>
                             {{#each model.cards as |item|}}
                                 {{#x-option value=item}}{{item.name}}{{/x-option}}
@@ -34,25 +34,68 @@
                 </div>
             </div>
 
+            <div class="panel-body hidden form-horizontal" id="new-credit-card">
+                <div class="row form-group required">
+                    <label class="col-sm-4 control-label">Name On Card</label>
 
-            <div class="panel-body hidden" id="new-credit-card">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Check #</label>
-
-                            <div class="input-group">
-                                {{input type="text" class="form-control" value=model.blankCheck.number id="checkNumber" disabled=true}}
-                            </div>
-                        </div>
+                    <div class="col-sm-8">
+                        {{input type="text" class="form-control" value=model.newCard.nameOnCard}}
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Check Date</label>
+                </div>
+                <div class="row form-group required">
+                    <label class="col-sm-4 control-label">Expiration</label>
 
-                            <div class="input-group">
-                                {{date-picker date=model.blankCheck.date format='MM-DD-YYYY' valueFormat='YYYY-MM-DD' class="form-control" allowBlank=true yearRange="0,4" id="checkDate" disabled=true}}
-                            </div>
+                    <div class="col-sm-4">
+                        {{#x-select value=model.newCard.expirationMonth class="form-control"}}
+                            <option>Select Month</option>
+                            {{#each listService.monthNumber as |item|}}
+                                {{#x-option value=item.value}}{{item.label}}{{/x-option}}
+                            {{/each}}
+                        {{/x-select}}
+                    </div>
+                    <div class="col-sm-4">
+                        {{#x-select value=model.newCard.expirationYear class="form-control"}}
+                            <option>Select Year</option>
+                            {{#each listService.cardExpirationYear as |item|}}
+                                {{#x-option value=item.value}}{{item.label}}{{/x-option}}
+                            {{/each}}
+                        {{/x-select}}
+                    </div>
+                </div>
+                <div class="row form-group required">
+                    <label class="col-sm-4 control-label">Card Number</label>
+
+                    <div class="col-sm-8">
+                        {{input type="text" class="form-control" value=model.newCard.number}}
+                    </div>
+                </div>
+                <div class="row form-group required">
+                    <label class="col-sm-4 control-label">Vendor</label>
+
+                    <div class="col-sm-8">
+                        {{#x-select value=model.newCard.vendor class="form-control"}}
+                            <option>Select</option>
+                            {{#each listService.cardVendor as |item|}}
+                                {{#x-option value=item.value}}{{item.label}}{{/x-option}}
+                            {{/each}}
+                        {{/x-select}}
+                    </div>
+                </div>
+                <div class="row form-group required">
+                    <label class="col-sm-4 control-label">Is this a debit card?</label>
+
+                    <div class="col-sm-8">
+                        {{#each listService.boolean  as |item|}}
+                            {{radio-button value=item.value checked=model.newCard.isDebit}} {{item.name}}
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group pull-right">
+                            {{#link-to 'cards' class="btn btn-primary"}}
+                                Cancel{{/link-to}}
+                            <button class="btn btn-primary pull-right" {{action "save" model}}>Save</button>
                         </div>
                     </div>
                 </div>
@@ -70,7 +113,6 @@
             </div>
 
             <div class="panel-body">
-
                 <div class="form-group">
                     <div class="input-group">
                         {{input type="text" class="form-control" value=model.amount}}
