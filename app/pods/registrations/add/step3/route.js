@@ -1,14 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    newRegistration: Ember.inject.service('new-registration'),
 
+    /**
+     * look for page refresh activity and send them back to the start
+     *
+     * @returns {boolean}
+     */
     activate: function () {
-        var add = this.controllerFor('registrations.add');
-        var wizardToken = add.get('wizardToken');
-        if (wizardToken === 'start') {
+        if (this.get('newRegistration.wizardToken') === 'start') {
             this.transitionTo('registrations.add.step1');
         } else {
-            add.set('wizardToken', 'step3');
+            this.get('newRegistration').set('wizardToken', 'step3');
         }
         return true;
     }

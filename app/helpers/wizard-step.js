@@ -4,4 +4,4 @@ export function wizardStep(params/*, hash*/) {
   return params;
 }
 
-export default Ember.HTMLBars.makeBoundHelper(wizardStep);
+export default Ember.Helper.helper(wizardStep);

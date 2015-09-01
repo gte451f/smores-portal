@@ -1,40 +1,59 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    //load up step1 for reference in template
-    needs: ['registrations/add/step1'],
-    step1: Ember.computed.alias("controllers.registrations/add/step1"),
+  //load up step1 for reference in template
+  newRegistration: Ember.inject.service('new-registration'),
 
+  //?
+  //location: null,
+  //event: null,
+
+  // a basic request object...cookie meet cutter
+  request: {
     location: null,
     event: null,
+    program: null,
+    note: null,
+    priority: null
+  },
+  actions: {
+    /**
+     * add a new request to the local list
+     */
+    addRequest: function () {
 
-    // a basic request object...cookie meet cutter
-    request: {
-        location: null,
-        event: null,
-        program: null,
-        note: null,
-        priority: null
+      //requests in single mode should not exceed three
+      var length = this.get('newRegistration.requests').length;
+      if (length === 3) {
+        this.notify.alert('Number of requests should not exceed: 3');
+        return;
+      }
+
+      var requests = this.get('newRegistration.requests');
+      var count = requests.length + 1;
+      var requestContainer = this.get('request');
+      requestContainer.priority = count;
+      var request = Ember.Object.create(requestContainer);
+      requests.pushObject(request);
     },
-    // list of request to submit
-    // this is only for add, not edit mode
-    requests: [],
-    actions: {
-        addRequest: function () {
-            var requests = this.get('requests');
-            var count = requests.length + 1;
-            var requestContainer = this.get('request');
-            requestContainer.priority = count;
-            var request = Ember.Object.create(requestContainer);
-            requests.pushObject(request);
-        },
 
-        /**
-         * remove an expense record from the store
-         */
-        removeRequest: function (object) {
-            var requestList = this.get('requests');
-            requestList.removeObject(object);
-        }
+    /**
+     * remove a request record from the local list and store?
+     */
+    removeRequest: function (object) {
+      var requestList = this.get('newRegistration.requests');
+      requestList.removeObject(object);
+
+      // resort priority if in single mode
+      var mode = this.get('newRegistration..mode');
+      if (mode === 0) {
+        var priority = 1;
+        requestList.forEach(function (item) {
+          item.set('priority', priority);
+          priority = priority + 1;
+        });
+
+      }
     }
+  }
 });

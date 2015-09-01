@@ -4,8 +4,6 @@
     Use this wizard to register a singler attendee for a single camp event. You will get a chance to review your
     selections before saving the registration.
 </div>
-
-
 <div class="row">
     <div class="col-md-12">
         <div class="box box-solid bg-yellow disabled">
@@ -26,21 +24,36 @@
             <!-- /.box-body -->
             <div class="box-footer text-black">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Attending Camper:</label>
-                            {{#x-select value=camper class="form-control"}}
+                    <div class="col-md-12">
+                        <div class="form-group required">
+                            <label>Select the camper attending camp:</label>
+                            {{#x-select value=newRegistration.camper class="form-control"}}
                                 <option>Select</option>
                                 {{#each attendees as |item|}}
-                                    {{#x-option value=item.id}}{{item.firstName}}{{/x-option}}
+                                    {{#x-option value=item}}{{item.firstName}} {{item.lastName}}{{/x-option}}
                                 {{/each}}
                             {{/x-select}}
                         </div>
                     </div>
-                    <div class="col-md-6">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group required">
+                            <label>How many sessions is your camper attending?:</label>
+                            {{#x-select value=newRegistration.mode class="form-control"}}
+                                <option value="0">A single session of camp</option>
+                                <option value="1">Multiple sessions of camp</option>
+                            {{/x-select}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <label>Registration Notes:</label>
-                            {{textarea class="form-control" value=registrationNote cols="80" rows="6"}}
+                            <label>Enter any important notes to camp staff here:</label>
+                            {{textarea class="form-control" value=newRegistration.registrationNote cols="80" rows="6"}}
                         </div>
                     </div>
                 </div>
