@@ -5,7 +5,7 @@ import ENV from 'smores-portal/config/environment';
 export default Ember.Route.extend(ErrorHandler, {
     //reset the model in case you return to add another record
     model: function () {
-        return {password: null, code: null, confirm: null};
+        return {password: null, code: null, password_confirm: null};
     },
 
     actions: {

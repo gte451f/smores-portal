@@ -21,7 +21,7 @@ export default Ember.Controller.extend(RouteAware, {
     RouteVal.create({
       route: 'registrations.add.step1',
       step: 'Choose Attendee',
-      next: 'Step2',
+      next: 'Step 2',
       nextTransition: 'registrations.add.step2',
       prevTransition: 'registrations.add.step1',
       showNext: true,
@@ -30,8 +30,8 @@ export default Ember.Controller.extend(RouteAware, {
     RouteVal.create({
       route: 'registrations.add.step2',
       step: 'Choose Events',
-      next: 'Step3',
-      prev: 'Step1',
+      next: 'Step 3',
+      prev: 'Step 1',
       nextTransition: 'registrations.add.step3',
       prevTransition: 'registrations.add.step1',
       showNext: true,
@@ -41,7 +41,7 @@ export default Ember.Controller.extend(RouteAware, {
       route: 'registrations.add.step3',
       step: 'Review',
       next: 'Make Another',
-      prev: 'Step2',
+      prev: 'Step 2',
       nextTransition: 'registrations.add.step3',
       prevTransition: 'registrations.add.step2',
       showNext: false,
@@ -56,9 +56,15 @@ export default Ember.Controller.extend(RouteAware, {
   showNext: routeVal('routeValues', 'showNext'),
   showPrev: routeVal('routeValues', 'showPrev'),
   actions: {
+
+    /**
+     * a central place to process requests for the next step
+     * also holds a list of validation steps for each step in the process
+     */
     next: function () {
       var currentRoute = Ember.get(this, 'currentPath');
       var newRegistration = this.get('newRegistration');
+      var self = this;
 
       if (currentRoute === 'registrations.add.step1') {
         if (Ember.isEmpty(this.get('newRegistration.camper'))) {
@@ -67,15 +73,33 @@ export default Ember.Controller.extend(RouteAware, {
         }
       }
 
-      //only place I see to hook into validation
+      // verify data coming out of step2 works
       if (currentRoute === 'registrations.add.step2') {
         if (this.get('newRegistration.requests').length === 0) {
           this.notify.alert('Must include at least on request before proceeding')
+          debugger;
           return;
         }
 
-        // TODO validate each request here
+        // verify that each request is fully completed
+        var requests = this.get('newRegistration.requests');
+        var proceed = true;
+        requests.forEach(function (item) {
+          if (Ember.isEmpty(item.get('priority'))) {
+            self.notify.alert('Each request must have a valid priority');
+            proceed = false;
+          }
 
+          if (Ember.isEmpty(item.get('event'))) {
+            self.notify.alert('Each request must have a selected Program/Cabin selected.');
+            proceed = false;
+          }
+        });
+
+        //use this to exit processing the action if validation fails
+        if (proceed === false) {
+          return;
+        }
       }
 
       this.transitionToRoute(this.get('nextTransition'));

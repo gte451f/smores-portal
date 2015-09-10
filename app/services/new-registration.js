@@ -21,12 +21,15 @@ export default Ember.Service.extend({
 
   /**
    * array of requests the camper asks for
+   * each request should look like this at a minimum:
+   * {priority: #, event: object}
    */
   requests: [],
 
   /**
    * store a marker for session type persistence across wizard steps
    * use this token to detect restarts
+   * start|step1|step2|step3
    */
   wizardToken: 'start',
 
