@@ -7,6 +7,9 @@ export default Ember.Route.extend(ErrorHandler, {
   // tell the system which way to process card data
   mode: 'file',
 
+  // should the card be saved for future use
+  saveCard: false,
+
   /**
    * create a blank payment record & gather available credit cards
    * @param params
@@ -14,7 +17,7 @@ export default Ember.Route.extend(ErrorHandler, {
    */
   model: function (params) {
     return Ember.RSVP.hash({
-      model: {selectedCard: null, newCard: {}, amount: null, mode: 'file'},
+      model: {selectedCard: null, newCard: null, amount: null, mode: 'file', isSpinning: false},
       cards: this.store.query('card', {account_id: params.account_id})
     });
   },
@@ -40,33 +43,127 @@ export default Ember.Route.extend(ErrorHandler, {
      * who is responsible for saving to 3rd party gateway?
      *
      */
-    save: function (model) {
+    save: function () {
       var self = this;
+      var controller = self.controllerFor('billing.add-payment');
+      var model = controller.get('model');
+      controller.set('model.isSpinning', true);
 
-      var payment = {};
+      // all payments from the portal are credit card
+      var payment = {mode: 'card'};
+
+      // simple validation
+      if (model.amount < 10) {
+        this.notify.alert('Payment amount must exceed $10');
+        // reset spinner
+        controller.set('model.isSpinning', false);
+        return;
+      }
+
+      // user must select a card
+      if (Ember.isEmpty(model.selectedCard) && model.mode === 'file') {
+        //this.notify.alert('Please select a card on file to bill');
+        //// reset spinner
+        //controller.set('model.isSpinning', false);
+        //return;
+      }
+
+      // end simple validation
+
       payment.amount = model.amount;
       var accountId = this.get('session.secure.accountId');
       payment.account = this.store.peekRecord('account', accountId);
 
       var mode = model.mode;
-      if (mode === 'file') {
-        payment.card = model.selectedCard;
-      } else {
-        // what do we do with a new credit card that we only want for this payment?
+
+      if (mode === 'new' && this.get('saveCard') === false) {
+        // save card first
+        // then save payment
+        this.saveNewFilePayment(model.newCard, payment);
       }
 
-      var newRecord = this.store.createRecord('payment', payment);
+      if (mode === 'file') {
+        payment.card = model.selectedCard;
+        this.saveFilePayment(payment);
+      } else {
+        // what do we do with a new credit card that we only want for this payment?
+        // probably a custom jquery xhr request here
+        // since we can't post a model w/ custom properties
+      }
 
-      newRecord.save().then(function (post) {
-        self.notify.success('Payment Saved');
-        self.transitionTo('billing.summary');
-      }, function (reason) {
-        // roll back progress
-        newRecord.deleteRecord();
-        self.validationReport(newRecord);
-      });
-
+      console.log(payment);
     }
+  },
+
+  /**
+   * isolate logic to save a simple payment for an existing card
+   * @param payment
+   */
+  saveFilePayment: function (payment) {
+    var self = this;
+
+    var newRecord = this.store.createRecord('payment', payment);
+    newRecord.save().then(function (post) {
+      self.notify.success('Payment Saved');
+      // reset for next run
+      self.set('model.amount', 0);
+      self.transitionTo('billing.summary');
+    }, function (reason) {
+      // roll back progress
+      newRecord.deleteRecord();
+      self.validationReport(newRecord);
+    }).then(function () {
+      // reset the spinner no matter the result
+      var controller = self.controllerFor('billing.add-payment');
+      controller.set('model.isSpinning', false);
+    });
+  },
+
+  /**
+   * perform 2 steps
+   * save a new credit card to the system
+   * apply a payment against that credit card
+   *
+   * @param payment
+   * @returns {boolean}
+   */
+  saveNewFilePayment: function (newCard, payment) {
+    var self = this;
+
+    // set some default values on the newCard
+    newCard.active = 1;
+    var accountId = this.get('session.secure.accountId');
+    newCard.account = this.store.getById('account', accountId);
+
+    if (Ember.isEmpty(newCard.account)) {
+      // error, no account detected
+      this.notify.alert('An internal error occurred.  Please logout and log back into the system.');
+      return false;
+    }
+
+    var newRecord = this.store.createRecord('card', newCard);
+    newRecord.save().then(function (post) {
+      self.notify.success('Card saved to your file');
+
+      // update selected card to match the newly created card
+      payment.card = newRecord;
+
+      // update form to use new card on file
+      self.set('model.currentCard', newRecord);
+      self.set('mode', 'file');
+      self.controllerFor('billing.add-payment').send('toggleCredit', 'file');
+
+      // now save the payment
+      self.saveFilePayment(payment);
+    }, function (reason) {
+      // roll back progress
+      newRecord.deleteRecord();
+      self.validationReport(newRecord);
+    }).then(function () {
+      // reset the spinner no matter the result
+      var controller = self.controllerFor('billing.add-payment');
+      controller.set('model.isSpinning', false);
+    });
   }
 
 });

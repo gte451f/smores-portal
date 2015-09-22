@@ -10,6 +10,7 @@ export default Ember.Route.extend(ErrorHandler, {
   actions: {
 
     /**
+     * save a new card record
      *
      * @param model
      * @returns {boolean}
@@ -17,8 +18,8 @@ export default Ember.Route.extend(ErrorHandler, {
     save: function (model) {
       var self = this;
 
+      // set some default values on the model
       model.active = 1;
-
       var accountId = this.get('session.secure.accountId');
       model.account = this.store.getById('account', accountId);
 
@@ -30,9 +31,9 @@ export default Ember.Route.extend(ErrorHandler, {
 
       var newRecord = this.store.createRecord('card', model);
       newRecord.save().then(function (post) {
-        self.notify.success('Card Added');
         self.set('model', {});
         self.transitionTo('cards');
+        self.notify.success('Card Added');
       }, function (reason) {
         // roll back progress
         newRecord.deleteRecord();

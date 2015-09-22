@@ -19,6 +19,7 @@
     "admin-lte": "2.3.0",
     "tooltipster": "~3.3.0",
     "qunit": "~1.18.0",
-    "font-awesome": "~4.4.0"
+    "font-awesome": "~4.4.0",
+    "spin.js": "~2.3.2"
   }
 }

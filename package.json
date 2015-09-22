@@ -49,6 +49,7 @@
     "ember-moment": "1.1.1",
     "ember-notify": "^3.4.0",
     "ember-radio-button": "1.0.5",
+    "ember-spinner-button": "0.0.10",
     "ember-watson": "^0.6.2",
     "emberx-select": "2.0.0",
     "emberx-slider": "1.0.3"
