@@ -17,7 +17,7 @@ export default Ember.Route.extend(ErrorHandler, {
    */
   model: function (params) {
     return Ember.RSVP.hash({
-      model: {selectedCard: null, newCard: null, amount: null, mode: 'file', isSpinning: false},
+      model: {selectedCard: null, newCard: {}, amount: null, mode: 'file', isSpinning: false},
       cards: this.store.query('card', {account_id: params.account_id})
     });
   },
@@ -62,10 +62,10 @@ export default Ember.Route.extend(ErrorHandler, {
 
       // user must select a card
       if (Ember.isEmpty(model.selectedCard) && model.mode === 'file') {
-        //this.notify.alert('Please select a card on file to bill');
+        this.notify.alert('Please select a card on file to bill');
         //// reset spinner
-        //controller.set('model.isSpinning', false);
-        //return;
+        controller.set('model.isSpinning', false);
+        return;
       }
 
       // end simple validation

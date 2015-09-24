@@ -63,7 +63,6 @@ export default Ember.Controller.extend(RouteAware, {
      */
     next: function () {
       var currentRoute = Ember.get(this, 'currentPath');
-      var newRegistration = this.get('newRegistration');
       var self = this;
 
       if (currentRoute === 'registrations.add.step1') {
@@ -76,8 +75,7 @@ export default Ember.Controller.extend(RouteAware, {
       // verify data coming out of step2 works
       if (currentRoute === 'registrations.add.step2') {
         if (this.get('newRegistration.requests').length === 0) {
-          this.notify.alert('Must include at least on request before proceeding')
-          debugger;
+          this.notify.alert('Must include at least on request before proceeding');
           return;
         }
 

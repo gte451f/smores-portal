@@ -1,0 +1,54 @@
+<div id="mainWrapper" class="wrapper">
+    {{partial "theme/setup-header"}}
+    {{side-bar}}
+    <!-- Content Wrapper. Contains page content -->
+    <div id="contenWrapper" class="content-wrapper" style="min-height: 1068px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Billing & Payments
+            </h1>
+            {{partial "theme/main-breadcrumb"}}
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="box box-default">
+                        <div class="box-header">
+                            <h3 class="box-title">Stored Credit Cards</h3>
+
+                            <div class="box-tools pull-right">
+                                {{#link-to 'cards.add' class="btn btn-box-tool"}} {{fa-icon 'plus'}} {{/link-to}}
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+
+                            {{#each model as |record|}}
+                                {{#if record.id}}
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            {{cards/card-info card=record}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a {{action 'showModal' 'modals/delete-confirm' record}}
+                                                    class="btn btn-default btn-block">{{fa-icon "trash-o"}}</a>
+                                        </div>
+                                    </div>
+                                {{/if}}
+                            {{/each}}
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{partial "theme/main-footer"}}
+</div>
