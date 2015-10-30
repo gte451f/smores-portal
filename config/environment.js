@@ -54,12 +54,12 @@ module.exports = function (environment) {
     }
 
     if (environment === 'production') {
-        ENV.baseURL = '/hhy/portal/';
+        ENV.baseURL = '/##CLIENT##/portal/';
         ENV.locationType = 'none';
         //need for ember data?
         ENV.APP.restNameSpace = 'api/v1';
         // used for CSP
-        ENV.APP.restDestination = 'https://app.smores.camp/hhy';
+        ENV.APP.restDestination = 'https://app.smores.camp/##CLIENT##';
 
         ENV['camp'] = {
             name: 'High Harbour'
