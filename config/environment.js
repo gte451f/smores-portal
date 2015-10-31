@@ -25,15 +25,13 @@ module.exports = function (environment) {
         // used for CSP
         ENV.APP.restDestination = 'http://localhost:4200';
         //need for ember data?
-        ENV.APP.restNameSpace = 'smores-api/v1';
-
+        ENV.APP.restNameSpace = '/v1';
         // Testem prefers this...
         ENV.baseURL = '/';
-
+        // TODO remove this in favor or DB camp name
         ENV['camp'] = {
-            name: 'High Harbour'
+            name: 'Demo Camp'
         };
-
     }
 
     if (environment === 'test') {

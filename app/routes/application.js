@@ -4,16 +4,20 @@ import Notify from 'ember-notify';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
 
+  /**
+   * preload the authenticated users account
+   * @param params
+   * @returns {*}
+   */
   model: function (params) {
     //if the user is authenticated, pre-load their account data
     var accountId = this.get('session.secure.accountId');
     if (Ember.typeOf(accountId) === 'undefined') {
-      console.error('Could not load session account data!');
-      Notify.alert('Could not load your account data.  Please logout and log back into the system.');
+      // console.error('Could not load session account data!');
+      // Notify.alert('Could not load your account data.  Please logout and log back into the system.');
       return {};
     } else {
       return this.store.findRecord('account', accountId);
-
     }
   },
 
