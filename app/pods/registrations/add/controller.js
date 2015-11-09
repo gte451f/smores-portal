@@ -15,6 +15,8 @@ function routeVal(routeVals, prop) {
 }
 
 export default Ember.Controller.extend(RouteAware, {
+  notify: Ember.inject.service(),
+
   newRegistration: Ember.inject.service('new-registration'),
 
   routeValues: [
@@ -67,7 +69,7 @@ export default Ember.Controller.extend(RouteAware, {
 
       if (currentRoute === 'registrations.add.step1') {
         if (Ember.isEmpty(this.get('newRegistration.camper'))) {
-          this.notify.alert('Must select a camper before proceeding.');
+          this.get('notify').alert('Must select a camper before proceeding.');
           return;
         }
       }
@@ -75,7 +77,7 @@ export default Ember.Controller.extend(RouteAware, {
       // verify data coming out of step2 works
       if (currentRoute === 'registrations.add.step2') {
         if (this.get('newRegistration.requests').length === 0) {
-          this.notify.alert('Must include at least on request before proceeding');
+          this.get('notify').alert('Must include at least on request before proceeding');
           return;
         }
 
@@ -84,12 +86,12 @@ export default Ember.Controller.extend(RouteAware, {
         var proceed = true;
         requests.forEach(function (item) {
           if (Ember.isEmpty(item.get('priority'))) {
-            self.notify.alert('Each request must have a valid priority');
+            self.get('notify').alert('Each request must have a valid priority');
             proceed = false;
           }
 
           if (Ember.isEmpty(item.get('event'))) {
-            self.notify.alert('Each request must have a selected Program/Cabin selected.');
+            self.get('notify').alert('Each request must have a selected Program/Cabin selected.');
             proceed = false;
           }
         });

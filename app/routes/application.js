@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
-import Notify from 'ember-notify';
+// import Notify from 'ember-notify';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
 

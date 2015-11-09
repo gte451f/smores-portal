@@ -2,6 +2,8 @@ import Ember from 'ember';
 import Error from 'smores-portal/mixins/crud/error';
 
 export default Ember.Route.extend(Error, {
+  notify: Ember.inject.service(),
+
   model: function (params) {
     return {phone: {primary: 1}, owner: {userType: 'Owner', active: true}};
   },
@@ -24,7 +26,7 @@ export default Ember.Route.extend(Error, {
 
       if (Ember.isEmpty(account)) {
         // error, no account detected
-        this.notify.alert('An internal error occurred.  Please logout and log back into the system.');
+        this.get('notify').alert('An internal error occurred.  Please logout and log back into the system.');
         return false;
       }
       var newOwner = this.store.createRecord('owner', model.owner);

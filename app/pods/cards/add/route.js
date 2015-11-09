@@ -2,6 +2,8 @@ import Ember from 'ember';
 import ErrorHandler from 'smores-portal/mixins/crud/error';
 
 export default Ember.Route.extend(ErrorHandler, {
+  notify: Ember.inject.service(),
+
   //reset the model in case you return to add another record
   model: function (params) {
     return {};
@@ -25,7 +27,7 @@ export default Ember.Route.extend(ErrorHandler, {
 
       if (Ember.isEmpty(model.account)) {
         // error, no account detected
-        this.notify.alert('An internal error occurred.  Please logout and log back into the system.');
+        this.get('notify').alert('An internal error occurred.  Please logout and log back into the system.');
         return false;
       }
 
@@ -33,7 +35,7 @@ export default Ember.Route.extend(ErrorHandler, {
       newRecord.save().then(function (post) {
         self.set('model', {});
         self.transitionTo('cards');
-        self.notify.success('Card Added');
+        self.get('notify').success('Card Added');
       }, function (reason) {
         // roll back progress
         newRecord.deleteRecord();

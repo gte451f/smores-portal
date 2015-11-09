@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ErrorHandler from 'smores-portal/mixins/crud/error';
 
 export default Ember.Route.extend(ErrorHandler, {
+  notify: Ember.inject.service(),
 
   actions: {
     /**
@@ -12,7 +13,7 @@ export default Ember.Route.extend(ErrorHandler, {
       var self = this;
       model.save().then(function () {
         self.transitionTo('members.list');
-        self.notify.success('Camper Saved');
+        self.get('notify').success('Camper Saved');
       }, function (reason) {
         self.validationReport(model);
       });

@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ErrorHandler from 'smores-portal/mixins/crud/error';
 
 export default Ember.Route.extend(ErrorHandler, {
+  notify: Ember.inject.service(),
 
   // file|new
   // tell the system which way to process card data
@@ -54,7 +55,7 @@ export default Ember.Route.extend(ErrorHandler, {
 
       // simple validation
       if (model.amount < 10) {
-        this.notify.alert('Payment amount must exceed $10');
+        this.get('notify').alert('Payment amount must exceed $10');
         // reset spinner
         controller.set('model.isSpinning', false);
         return;
@@ -62,7 +63,7 @@ export default Ember.Route.extend(ErrorHandler, {
 
       // user must select a card
       if (Ember.isEmpty(model.selectedCard) && model.mode === 'file') {
-        this.notify.alert('Please select a card on file to bill');
+        this.get('notify').alert('Please select a card on file to bill');
         //// reset spinner
         controller.set('model.isSpinning', false);
         return;
@@ -104,7 +105,7 @@ export default Ember.Route.extend(ErrorHandler, {
 
     var newRecord = this.store.createRecord('payment', payment);
     newRecord.save().then(function (post) {
-      self.notify.success('Payment Saved');
+      self.get('notify').success('Payment Saved');
       // reset for next run
       self.set('model.amount', 0);
       self.transitionTo('billing.summary');
@@ -137,13 +138,13 @@ export default Ember.Route.extend(ErrorHandler, {
 
     if (Ember.isEmpty(newCard.account)) {
       // error, no account detected
-      this.notify.alert('An internal error occurred.  Please logout and log back into the system.');
+      this.get('notify').alert('An internal error occurred.  Please logout and log back into the system.');
       return false;
     }
 
     var newRecord = this.store.createRecord('card', newCard);
     newRecord.save().then(function (post) {
-      self.notify.success('Card saved to your file');
+      self.get('notify').success('Card saved to your file');
 
       // update selected card to match the newly created card
       payment.card = newRecord;

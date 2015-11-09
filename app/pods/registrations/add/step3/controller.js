@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  notify: Ember.inject.service(),
+
   newRegistration: Ember.inject.service('new-registration'),
 
   actions: {
@@ -51,7 +53,7 @@ export default Ember.Controller.extend({
         Ember.RSVP.all(subItems).then(function () {
           // reset registration wizard
           that.get('newRegistration').resetRegistration();
-          self.notify.success('Success saving registration including ' + requestCount + ' individual requests.');
+          self.get('notify').success('Success saving registration including ' + requestCount + ' individual requests.');
           self.transitionToRoute('registrations.info', registrationId);
         }, failure);
       }
@@ -65,7 +67,7 @@ export default Ember.Controller.extend({
         reason.responseJSON.records.validationList.forEach(function (item) {
           errorHTML = errorHTML + item.message + '<br/>';
         }, this);
-        self.notify.warning({raw: errorHTML});
+        self.get('notify').warning({raw: errorHTML});
       }
 
       // it's go time, perform the save

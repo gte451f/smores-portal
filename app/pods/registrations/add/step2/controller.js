@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  notify: Ember.inject.service(),
+
   //load up step1 for reference in template
   newRegistration: Ember.inject.service('new-registration'),
 
@@ -25,7 +27,7 @@ export default Ember.Controller.extend({
       //requests in single mode should not exceed three
       var length = this.get('newRegistration.requests').length;
       if (length === 3) {
-        this.notify.alert('Number of requests should not exceed: 3');
+        this.get('notify').alert('Number of requests should not exceed: 3');
         return;
       }
 

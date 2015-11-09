@@ -2,30 +2,32 @@ import Ember from 'ember';
 import Error from 'smores-portal/mixins/crud/error';
 
 export default Ember.Component.extend(Error, {
-    isEditing: false,
+  notify: Ember.inject.service(),
 
-    actions: {
-        edit: function () {
-            this.set('isEditing', true);
-        },
+  isEditing: false,
 
-        cancel: function () {
-            this.set('isEditing', false);
-        },
+  actions: {
+    edit: function () {
+      this.set('isEditing', true);
+    },
 
-        // send this action up to the controller
-        delete: function (phone) {
-            phone.destroyRecord();
-        },
+    cancel: function () {
+      this.set('isEditing', false);
+    },
 
-        save: function (model) {
-            var self = this;
-            model.save().then(function (data) {
-                self.notify.success('Phone Number saved');
-                self.set('isEditing', false);
-            }, function (reason) {
-                self.handleXHR(reason);
-            });
-        }
+    // send this action up to the controller
+    delete: function (phone) {
+      phone.destroyRecord();
+    },
+
+    save: function (model) {
+      var self = this;
+      model.save().then(function (data) {
+        self.get('notify').success('Phone Number saved');
+        self.set('isEditing', false);
+      }, function (reason) {
+        self.handleXHR(reason);
+      });
     }
+  }
 });
