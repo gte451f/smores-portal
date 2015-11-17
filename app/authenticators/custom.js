@@ -1,11 +1,10 @@
 import Ember from "ember";
 import Base from "simple-auth/authenticators/base";
 import ENV from 'smores-portal/config/environment';
-import Notify from 'ember-notify';
 import ErrorHandler from 'smores-portal/mixins/crud/error';
 
 export default Base.extend(ErrorHandler, {
-
+  notify: Ember.inject.service(),
   /**
    * @param data
    */
@@ -38,7 +37,7 @@ export default Base.extend(ErrorHandler, {
         // perform some validation to verify that we can a valid response from API
         if ((typeof token === 'undefined') || (typeof id === 'undefined')) {
           var errorMessage = "<h4>Could not log you into the system: </h4> No valid user found";
-          Notify.alert({raw: errorMessage, closeAfter: 10000});
+          this.get('notify').alert({raw: errorMessage, closeAfter: 10000});
         } else {
           Ember.run(function () {
             // resolve (including the account id) as the AJAX request was successful; all properties this promise resolves
