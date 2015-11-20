@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  newRegistration: Ember.inject.service('new-registration'),
-
+  registration: Ember.inject.service(),
+  
   /**
    * load fees for confirmation page
    * @param params
@@ -32,10 +32,10 @@ export default Ember.Route.extend({
    * @returns {boolean}
    */
   activate: function () {
-    if (this.get('newRegistration.wizardToken') === 'start') {
+    if (this.get('registration.wizardToken') === 'start') {
       this.transitionTo('registrations.add.step1');
     } else {
-      this.get('newRegistration').set('wizardToken', 'step3');
+      this.get('registration').set('wizardToken', 'step3');
     }
     return true;
   }

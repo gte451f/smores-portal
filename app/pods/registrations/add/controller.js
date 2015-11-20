@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import RouteAware from 'smores-portal/mixins/wizard/route-aware';
-import RouteVal from 'smores-portal/mixins/wizard/route-val';
 
 function routeVal(routeVals, prop) {
   return Ember.computed('currentPath', function () {
@@ -17,10 +16,10 @@ function routeVal(routeVals, prop) {
 export default Ember.Controller.extend(RouteAware, {
   notify: Ember.inject.service(),
 
-  newRegistration: Ember.inject.service('new-registration'),
+  registration: Ember.inject.service(),
 
   routeValues: [
-    RouteVal.create({
+    Ember.Object.create({
       route: 'registrations.add.step1',
       step: 'Choose Attendee',
       next: 'Step 2',
@@ -29,7 +28,7 @@ export default Ember.Controller.extend(RouteAware, {
       showNext: true,
       showPrev: false
     }),
-    RouteVal.create({
+    Ember.Object.create({
       route: 'registrations.add.step2',
       step: 'Choose Events',
       next: 'Step 3',
@@ -39,7 +38,7 @@ export default Ember.Controller.extend(RouteAware, {
       showNext: true,
       showPrev: true
     }),
-    RouteVal.create({
+    Ember.Object.create({
       route: 'registrations.add.step3',
       step: 'Review',
       next: 'Make Another',
@@ -68,7 +67,7 @@ export default Ember.Controller.extend(RouteAware, {
       var self = this;
 
       if (currentRoute === 'registrations.add.step1') {
-        if (Ember.isEmpty(this.get('newRegistration.camper'))) {
+        if (Ember.isEmpty(this.get('registration.camper'))) {
           this.get('notify').alert('Must select a camper before proceeding.');
           return;
         }
@@ -76,13 +75,13 @@ export default Ember.Controller.extend(RouteAware, {
 
       // verify data coming out of step2 works
       if (currentRoute === 'registrations.add.step2') {
-        if (this.get('newRegistration.requests').length === 0) {
+        if (this.get('registration.requests').length === 0) {
           this.get('notify').alert('Must include at least on request before proceeding');
           return;
         }
 
         // verify that each request is fully completed
-        var requests = this.get('newRegistration.requests');
+        var requests = this.get('registration.requests');
         var proceed = true;
         requests.forEach(function (item) {
           if (Ember.isEmpty(item.get('priority'))) {

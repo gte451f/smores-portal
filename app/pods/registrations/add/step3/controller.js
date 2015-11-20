@@ -2,8 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   notify: Ember.inject.service(),
-
-  newRegistration: Ember.inject.service('new-registration'),
+  registration: Ember.inject.service(),
 
   actions: {
     /**
@@ -14,10 +13,10 @@ export default Ember.Controller.extend({
 
       //first save a registration
       var data = {
-        attendee: this.get('newRegistration.camper'),
-        notes: this.get('newRegistration.registrationNote')
+        attendee: this.get('registration.camper'),
+        notes: this.get('registration.registrationNote')
       };
-      var registration = this.store.createRecord('registration', data);
+      var newRegistration = this.store.createRecord('registration', data);
 
       var subItems = [];
 
@@ -35,7 +34,7 @@ export default Ember.Controller.extend({
         var that = self;
 
         //now add requests for the registration
-        var requests = self.get('newRegistration.requests');
+        var requests = self.get('registration.requests');
         var requestCount = requests.length;
         var registrationId = post.get('id');
 
@@ -52,7 +51,7 @@ export default Ember.Controller.extend({
 
         Ember.RSVP.all(subItems).then(function () {
           // reset registration wizard
-          that.get('newRegistration').resetRegistration();
+          that.get('registration').resetRegistration();
           self.get('notify').success('Success saving registration including ' + requestCount + ' individual requests.');
           self.transitionToRoute('registrations.info', registrationId);
         }, failure);
@@ -71,7 +70,7 @@ export default Ember.Controller.extend({
       }
 
       // it's go time, perform the save
-      registration.save().then(success, failure);
+      newRegistration.save().then(success, failure);
     } // end save function
   }
 });

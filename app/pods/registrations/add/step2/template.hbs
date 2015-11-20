@@ -24,19 +24,19 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <strong>Camper: </strong>{{newRegistration.camper.firstName}} {{newRegistration.camper.lastName}}
+                        <strong>Camper: </strong>{{registration.camper.firstName}} {{registration.camper.lastName}}
                     </div>
                     <div class="col-md-3">
                         <strong>Grade: </strong>
-                        {{newRegistration.camper.schoolGrade}}
+                        {{registration.camper.schoolGrade}}
                     </div>
                     <div class="col-md-3">
-                        <strong>Gender: </strong> {{newRegistration.camper.gender}}
+                        <strong>Gender: </strong> {{registration.camper.gender}}
                     </div>
                     <div class="col-md-3">
                         <dl class="">
                             <strong>Birthday: </strong>
-                            {{moment newRegistration.camper.dob 'MM/DD/YYYY'}}
+                            {{moment registration.camper.dob 'MM/DD/YYYY'}}
                         </dl>
                     </div>
                 </div>
@@ -95,8 +95,8 @@
                         <label>&nbsp;</label>
                     </div>
                 </div>
-                {{#each newRegistration.requests as |item|}}
-                    {{registrations/new-request request=item action="removeRequest" locations=locations sessions=sessions events=events mode=newRegistration.mode}}
+                {{#each registration.requests as |item|}}
+                    {{form-request request=item action="removeRequest" locations=locations sessions=sessions events=events mode=registration.mode}}
                 {{/each}}
             </div>
         </div>

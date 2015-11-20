@@ -4,7 +4,11 @@
         <section class="col-md-4">
             <div class="box box-primary">
                 <div class="box-header ">
-                    <h3 class="box-title"></h3>
+                    <h3 class="box-title">
+                        {{#link-to 'members.edit-attendee' model.attendee.id}}
+                            {{model.attendee.firstName}} {{model.attendee.lastName}}
+                        {{/link-to}}
+                    </h3>
 
                     <div class="box-tools pull-right">
                         <div class="btn-group">
@@ -15,12 +19,6 @@
 
                 <div class="box-body">
                     <dl class="dl-horizontal">
-                        <dt>Camper</dt>
-                        <dd>
-                            {{#link-to 'members.edit-attendee' model.attendee.id}}
-                                {{model.attendee.firstName}} {{model.attendee.lastName}}
-                            {{/link-to}}
-                        </dd>
                         <dt>Grade</dt>
                         <dd>{{model.attendee.schoolGrade}}</dd>
                         <dt>BirthDay</dt>

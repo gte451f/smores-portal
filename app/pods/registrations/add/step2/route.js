@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  newRegistration: Ember.inject.service('new-registration'),
+  registration: Ember.inject.service(),
 
   /**
    * look for page refresh activity and send them back to the start
@@ -9,10 +9,10 @@ export default Ember.Route.extend({
    * @returns {boolean}
    */
   activate: function () {
-    if (this.get('newRegistration.wizardToken') === 'start') {
+    if (this.get('registration.wizardToken') === 'start') {
       this.transitionTo('registrations.add.step1');
     } else {
-      this.get('newRegistration').set('wizardToken', 'step2');
+      this.get('registration').set('wizardToken', 'step2');
     }
     return true;
   },
@@ -44,7 +44,7 @@ export default Ember.Route.extend({
 
     // load gender so we can filter cabins
 
-    var camper = this.get('newRegistration.camper');
+    var camper = this.get('registration.camper');
     var gender = camper.get('gender');
 
     var modifiedEvents = [];

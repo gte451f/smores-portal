@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  newRegistration: Ember.inject.service('new-registration'),
+  registration: Ember.inject.service(),
 
   /**
    * set wizard token since this is the start
@@ -10,7 +10,7 @@ export default Ember.Route.extend({
    * @returns {boolean}
    */
   activate: function () {
-    this.get('newRegistration').set('wizardToken', 'step1');
+    this.get('registration').set('wizardToken', 'step1');
     return true;
   },
   /**
@@ -27,7 +27,7 @@ export default Ember.Route.extend({
   },
 
   /**
-   * pass attendess to controller
+   * pass attendees to controller
    * @param controller
    * @param resolved
    */
