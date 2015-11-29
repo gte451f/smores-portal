@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="list-group">
+                <div class="list-group parent-list">
                     {{#each model.owners as |item|}}
                         {{#link-to 'members.edit-owner' item.id class="list-group-item"}}
                             <h4 class="list-group-item-heading">{{item.firstName}} {{item.lastName}}
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="list-group">
+                <div class="list-group camper-list">
                     {{#each model.attendees as |item|}}
                         {{#link-to 'members.edit-attendee' item.id class="list-group-item"}}
                             <h4 class="list-group-item-heading">{{item.firstName}} {{item.lastName}}</h4>

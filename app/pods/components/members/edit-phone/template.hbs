@@ -13,7 +13,7 @@
 
             <div class="col-sm-8">
                 {{#each listService.ownerNumberType  as |item|}}
-                    {{radio-button value=item.value checked=phone.phoneType}} {{item.label}}
+                    {{radio-button value=item.value groupValue=phone.phoneType}} {{item.label}}
                 {{/each}}
             </div>
         </div>

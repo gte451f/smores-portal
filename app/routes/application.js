@@ -1,11 +1,14 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
-// import Notify from 'ember-notify';
+// install simple-auth for all routes
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+  session: Ember.inject.service(),
 
   /**
    * preload the authenticated users account
+   *
    * @param params
    * @returns {*}
    */
@@ -21,10 +24,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
   },
 
+  // default route?
   redirectsTo: 'dash',
 
   actions: {
-
+    // show/hide sidebar
     showSidebar: function () {
       Ember.$('#mainWrapper').toggleClass('sidebar-collapse');
       Ember.$('#contentWrapper').toggleClass('sidebar-offset');
@@ -47,11 +51,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
     // end basic model logic
 
+    /**
+     * redirect to login page if user lacks a valid session
+     * TODO not sure this is needed
+     */
     sessionInvalidationSucceeded: function () {
       if (!Ember.testing) {
-        //this.transitionTo('auth.login');
         window.location.replace('auth/login');
       }
-    }
+    },
+    /**
+     * logout action required by simple-auth
+     */
+    invalidateSession: function () {
+      console.log('logout action caught');
+      this.get('session').invalidate();
+    },
+
   }
 });

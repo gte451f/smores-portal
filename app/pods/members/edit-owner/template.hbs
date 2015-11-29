@@ -19,7 +19,7 @@
 
                     <div>
                         {{#each listService.ownerRelationship as |item|}}
-                            {{radio-button value=item.value checked=model.relationship}} {{item.label}}
+                            {{radio-button value=item.value groupValue=model.relationship}} {{item.label}}
                         {{/each}}
                     </div>
                 </div>
@@ -29,7 +29,7 @@
 
                     <div>
                         {{#each listService.gender as |item|}}
-                            {{radio-button value=item.value checked=model.gender}} {{item.display}}
+                            {{radio-button value=item.value groupValue=model.gender}} {{item.display}}
                         {{/each}}
                     </div>
                 </div>
