@@ -1,11 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    newPhone: false,
+  breadCrumb: 'Edit Owner',
+  newPhone: false,
 
-    actions: {
-        toggleNewPhone: function(){
-            this.set('newPhone', true);
-        }
+  actions: {
+    toggleNewPhone: function () {
+      this.set('newPhone', true);
     }
+  }
 });

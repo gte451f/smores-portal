@@ -15,6 +15,7 @@ function routeVal(routeVals, prop) {
 
 export default Ember.Controller.extend(RouteAware, {
   notify: Ember.inject.service(),
+  breadCrumb: 'Add',
 
   registration: Ember.inject.service(),
 

@@ -3,6 +3,7 @@ import ErrorHandler from 'smores-portal/mixins/crud/error';
 
 export default Ember.Route.extend(ErrorHandler, {
   notify: Ember.inject.service(),
+  session: Ember.inject.service(),
 
   /**
    * load credit cards for display
@@ -10,7 +11,7 @@ export default Ember.Route.extend(ErrorHandler, {
    * @returns {*}
    */
   model: function (params) {
-    var accountId = this.get('session.secure.accountId');
+    var accountId = this.get('session.data.authenticated.accountId');
 
     if (Ember.isEmpty(accountId)) {
       // error, no account detected

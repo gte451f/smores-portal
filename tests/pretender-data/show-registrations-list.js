@@ -59,5 +59,4 @@ export default {
       "token_created_on": null
     }]
   }
-
-}
+};

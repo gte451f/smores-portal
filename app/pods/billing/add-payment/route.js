@@ -3,6 +3,7 @@ import ErrorHandler from 'smores-portal/mixins/crud/error';
 
 export default Ember.Route.extend(ErrorHandler, {
   notify: Ember.inject.service(),
+  session: Ember.inject.service(),
 
   // file|new
   // tell the system which way to process card data
@@ -72,7 +73,7 @@ export default Ember.Route.extend(ErrorHandler, {
       // end simple validation
 
       payment.amount = model.amount;
-      var accountId = this.get('session.secure.accountId');
+      var accountId = this.get('session.data.authenticated.accountId')
       payment.account = this.store.peekRecord('account', accountId);
 
       var mode = model.mode;
@@ -133,7 +134,7 @@ export default Ember.Route.extend(ErrorHandler, {
 
     // set some default values on the newCard
     newCard.active = 1;
-    var accountId = this.get('session.secure.accountId');
+    var accountId = this.get('session.data.authenticated.accountId')
     newCard.account = this.store.getById('account', accountId);
 
     if (Ember.isEmpty(newCard.account)) {

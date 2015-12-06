@@ -22,11 +22,6 @@ Router.map(function () {
     this.route('list');
   });
 
-  this.route('cards', function () {
-    this.route('add');
-    this.route('list');
-  });
-
   this.route('registrations', function () {
     this.route('add', function () {
       this.route('step1');
@@ -48,6 +43,11 @@ Router.map(function () {
   this.route('billing', function () {
     this.route('summary');
     this.route('add-payment');
+    this.route('cards', function () {
+      this.route('add');
+      this.route('list');
+    });
+
   });
 });
 

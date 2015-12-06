@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  breadCrumb: 'Info'
+  breadCrumb: 'Credit Cards',
+  breadCrumbPath: 'billing.cards.list'
 });
