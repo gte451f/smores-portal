@@ -13,12 +13,18 @@
 /connect.lock
 /coverage/*
 /libpeerconnection.log
-npm-debug.log
+npm-debug.log*
 testem.log
 
 #phpstorm
 /.idea
-.idea
+
+#secret files
+.env
+.env.deploy.production
+.env.deploy.staging
+.env.deploy.development
+
 
 # Octocat's Idea's on what to ignore
 # Compiled source #
@@ -47,7 +53,7 @@ testem.log
 ######################
 *.log
 *.sql
-# *.sqlite
+*.sqlite
 
 # OS generated files #
 ######################
