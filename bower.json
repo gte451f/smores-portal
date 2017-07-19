@@ -1,0 +1,6 @@
+{
+  "name": "smores-portal",
+  "dependencies": {
+    "admin-lte": "git@github.com:gte451f/AdminLTE.git#4324c93a2dac8c58abcd1f871bc20d066d63e0c2"
+  }
+}
